@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>통함장이론(UFT: Unified Field Theory) by Bae</title>
-<!-- 폰트 로드 (Noto Sans KR 적용) -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <title>통합장이론(Unified Field Theory:UFT) by Bae</title>
+    <!-- 폰트 로드 (Noto Sans KR 적용: 고딕체) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- MathJax (수식 렌더링) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         /* 기본 스타일 설정 */
         body {
             background-color: #0d1117; /* 다크 모드 배경 */
             color: #c9d1d9; /* 텍스트 색상 */
-font-family: 'Noto Sans KR', sans-serif; /* 여기를 이렇게 수정! */            margin: 0;
+            font-family: 'Noto Sans KR', sans-serif; /* 고딕체 적용 */
+            margin: 0;
             display: flex;
             height: 100vh;
             overflow: hidden;
@@ -79,7 +82,9 @@ font-family: 'Noto Sans KR', sans-serif; /* 여기를 이렇게 수정! */      
         h1.title { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
         h2 { font-size: 1.8rem; color: #58a6ff; margin-top: 60px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
         h3 { font-size: 1.4rem; color: #79c0ff; margin-top: 40px; }
-p { margin-bottom: 20px; font-weight: 300; }        strong { color: #fff; font-weight: 700; }
+        /* 기존의 Merriweather(바탕체) 설정을 제거하고 body의 Noto Sans KR을 상속받도록 수정 */
+        p { margin-bottom: 20px; font-weight: 300; } 
+        strong { color: #fff; font-weight: 700; }
         ul { margin-bottom: 20px; }
         li { margin-bottom: 10px; }
 
@@ -104,6 +109,7 @@ p { margin-bottom: 20px; font-weight: 300; }        strong { color: #fff; font-w
 </head>
 <body>
 
+    <!-- 사이드바: 목차 -->
     <nav>
         <h1>Digital UFT</h1>
         <div class="author">The New Structure of Physics<br>by Bae</div>
@@ -123,126 +129,240 @@ p { margin-bottom: 20px; font-weight: 300; }        strong { color: #fff; font-w
         </ul>
     </nav>
 
+    <!-- 메인 본문 -->
     <main>
         <div class="container">
             
             <header style="margin-bottom: 60px; text-align: center;">
-                <h1 class="title">Unified Field Theory (UFT)</h1>
+                <h1 class="title">Unified Field Theory (UFT) by Bae</h1>
                 <p style="color: #8b949e;">Author: Bae</p>
                 <div style="margin-top:20px; border:1px solid #58a6ff; display:inline-block; padding:10px 20px; border-radius:20px; color:#58a6ff;">
                     System Version 0.70
                 </div>
             </header>
 
+            <!-- 1. 개요 -->
             <section id="overview">
                 <h2>1. 개요 (Overview)</h2>
-                <p>본 통합장 이론(Unified Field Theory)은 미시 세계와 거시 우주 세계의 물리적인 구조 및 현상을 오직 전자기력과 운동력만로 해석하는 일종의 통합장(Unified Field) 이론입니다. 우주의 근본 요소를 <strong>근본전하요소(FCE)</strong>와 그 운동으로 규정하고, 이 FCE들의 상호작용으로 인한 전기장과 자기장의 상호 유도를 통해 융합되는 <strong>근본전하입자(Fcp)</strong>, 단위전하입자(Ucp), 전자(Ep), 및 원자, 다원자의 단계를 거쳐 거시 세계를 모델링합니다.</p>
-                <p>특히, 이 모델은 전하(Electric Charge)가 국소전기장이라는 고유한 불변 속성일 뿐만이 아니라, <strong>자하(점자속:Magnetic charge)</strong>와의 융합체로 모델링하며, 이 원리는 미시 세계 뿐만 아니라 거시 세계 및 천체 운동 원리까지 확장되는 프랙탈 구조를 갖습니다.</p>
+                <p>본 통합장 이론(Unified Field Theory)은 미시 세계와 거시 우주 세계의 물리적인 구조 및 현상을 오직 전자기력과 운동력만로 해석하는 일종의 통합장(Unified Field) 이론이다. 우주의 근본 요소를 <strong>근본전하요소(FCE)</strong>와 그 운동으로 규정하고, 이 FCE들의 상호작용으로 인한 전기장과 자기장의 상호 유도를 통해 융합되는 <strong>근본전하입자(Fcp)</strong>, 단위전하입자(Ucp), 전자(Ep), 및 원자, 다원자의 단계를 거쳐 거시 세계를 모델링한다.</p>
+                <p>특히, 이 이론은 현대물리학에서 사용하는 용어 전하(Electric Charge)를 확대 정의하여 복소 전하 벡터로 정의하고, 이 복소 전하 벡터는 전기적인 성질인 국소전기장을 발산하는 동시에 <strong>자하(점자속:Magnetic charge)</strong> 즉, 자기적인 성질의 국소자기장도 형성하는 전기적 성질과 자기적 성질의 복합 벡터로 정의하며, 이 원리를 통해 미시 세계 뿐만 아니라 거시 세계 및 천체 운동 원리까지 확장되는 프랙탈 구조를 갖는다.</p>
+                <p>또한, 물질의 탄생 과정은 FCE의 <strong>극한 속도(Concept of $c^4$)</strong> 운동이 Fcp의 <strong>초광속 공전(Concept of $c^2$)</strong>으로 결합되고, 이것이 다시 Ucp(전자 등)의 <strong>광속($c$)</strong> 궤도 운동으로 수렴되며 에너지가 응축되는 과정으로 해석한다.</p>
 
                 <h3>1.1. 통합장이론(UFT)의 기초이론, 전제, 및 목표</h3>
                 <ul>
-                    <li><strong>통합장이론의 근간 - 고전 전자기학이론 및 정의의 확장:</strong> 우주의 모든 상호작용은 오직 전자기력과 운동력만으로 해석한다.</li>
-                    <li><strong>고전 운동역학의 수용 및 확대 해석:</strong> 힘의 전달 방식을 확대 해석한다.</li>
-                    <li><strong>시공간 기하학적 해석 배제:</strong> 시공간의 휨(곡률) 개념은 철저히 배제한다.</li>
-                    <li><strong>양자 현상의 결정론적 해석:</strong> 불확정성 원리는 내부 미세 구조를 통해 결정론적으로 설명된다.</li>
+                    <li><strong>통합장이론의 근간 : 고전 전자기학 이론 및 그 정의의 확장:</strong> 고전 전자기학은 통합장이론의 근간이지만, 일부 용어들에 대해서는 확장된 정의가 적용되며, 우주의 모든 상호작용을 오직 전자기력과 운동력만으로 해석한다.</li>
+                    <li><strong>고전 운동역학 수용 및 확대 해석:</strong> 미시 세계 및 거시 우주세계에서도 통합장이론은 고전 운동역학 그대로 적용하며 일부 용어에 대해서는 확장된 정의를 적용한다.</li>
+                    <li><strong>상대성이론 일부 수용 및 일부 개념 배제:</strong> 질량/에너지 변환식 $E=mc^2$ 을 수용하면서도, 기존 용어에 대해 UFT 이론에 맞도록 용어의 확장적 재정의 및 수정 확장된 공식으로 적용한다. 감마인자의 사용을 인정하지 않으며, UFT에서는 시공간의 곡률이라는 개념은 절대적으로 배격한다.</li>
+                    <li><strong>중력상수 G의 배제:</strong> 본 이론에서는 중력상수 G가 상수가 될 수 없는 관계로 이 중력상수G를 미시세계나 거시 우주세계의 현상에 대해서는 사용할 수 없는 상수로 규정한다.</li>
+                    <li><strong>양자 현상의 결정론적 해석:</strong> 불확정성 원리를 내부 미세 구조를 통해 결정론적으로 설명한다.</li>
+                </ul>
+
+                <h3>1.2. 이론적 배경 및 차별화 주제 (Theoretical Context and Differential Topics)</h3>
+                <p>본 이론은 다음 주제들을 전자기학적 환원론의 관점에서 다음과 같이 재해석한다.</p>
+                <p><strong>양자 현상의 결정론적 해석 (Deterministic Interpretation of Quantum Phenomena):</strong><br>
+                UFT 관점: 기존 양자역학의 확률론적 해석을 지양하고, 미시 세계의 양자 현상을 근본전하입자(Fcp) 및 단위전하입자(Ucp) 내부의 결정론적인 전자기적 상호작용과 기하학적 궤도 운동에 기인한 물리적 실체로 재해석한다.</p>
+
+                <p><strong>중력의 비표준적 수정 (Non-Standard Modifications to Gravity):</strong><br>
+                UFT 관점: 중력을 시공간의 기하학이 아닌, 전자기장 에너지 응축체(질량) 주변에 발생하는 <strong>전자기 포텐셜 경도(Potential Gradient)</strong>의 효과로 해석한다. 암흑 물질/에너지 현상을 전자기장 상호작용의 거리적 특성으로 재해석한다.</p>
+
+                <p><strong>시간과 공간의 본질 (The Nature of Time and Space):</strong><br>
+                UFT 관점: UFT에서는 시간과 공간에 대해 별도의 물리학적 해석이나 왜곡을 시도하지 않으며, 이들을 단지 물리적 현상을 기술하기 위한 약속된 정의(Definition)이자 절대적인 배경 그 자체로 수용한다. 즉, 공간은 유클리드 기하학의 평탄한 3차원 공간이며, 시간은 보편적으로 흐르는 독립적인 척도임을 전제로 한다.</p>
+
+                <h3>1.3. 이론의 포괄적 적용 범위 및 로드맵 (Scope and Roadmap of UFT)</h3>
+                <p>본 문서는 우주의 모든 관측 현상을 하나의 원리(Unified Field)로 설명하는 <strong>통합장이론(UFT)의 총론(General Theory)</strong>이다. 본 이론은 향후 별도의 세부 연구를 통해 다음의 모든 영역을 UFT의 단일한 메커니즘으로 규명하고 통합한다.</p>
+                <ul>
+                    <li><strong>미시 세계 및 양자 현상:</strong> 양자역학적 확률 파동의 결정론적 해석, 입자 모델링, 강력 및 약력의 전자기적 환원.</li>
+                    <li><strong>거시 세계 및 현실 물리:</strong> 고전 역학, 유체 역학, 전자기 응용 등 현실 세계의 물리 현상 재해석.</li>
+                    <li><strong>중력의 통합 (Integration of Gravity):</strong> 중력을 별도의 힘이 아닌 전자기적 상호작용의 파생 효과(전자기 포텐셜 경도)로 규명하고, 이를 전자기력과 단일한 원리로 통합한다.</li>
+                    <li><strong>우주론 및 천체 물리학:</strong> 태양계 행성 운동부터 심우주(Deep Space) 관측 현상, 은하 회전, 적색 편이 등의 통합장적 해석.</li>
+                    <li><strong>화학 및 열역학:</strong> 원자 간 결합 원리, 분자 구조, 열역학 법칙 및 엔트로피의 장(Field) 기반 해석.</li>
                 </ul>
             </section>
 
+            <!-- 2. 상수 -->
             <section id="constants">
                 <h2>2. UFT의 3대 절대 보존 법칙 및 5대 근본 상수</h2>
-                <h3>2.1. 3대 절대 보존 법칙</h3>
+                <h3>2.1. 3대 절대 보존 법칙 (Three Absolute Conservation Laws)</h3>
                 <ul>
-                    <li><strong>공간의 절대성:</strong> 유클리드 기하학은 절대적이며, 공간은 휘지 않는다.</li>
-                    <li><strong>에너지 보존의 절대성:</strong> 총량은 절대적으로 보존된다.</li>
-                    <li><strong>전하량 보존의 절대성:</strong> 전하량($Q$)은 우주의 근원적 실체로 절대 보존된다.</li>
+                    <li><strong>시간과 공간의 절대성 (Absolute Conservation of Time and Space):</strong> 공간은 유클리드 기하학의 평탄한 구조를 가지며, 시간은 우주 전체에 걸쳐 균일하고 독립적으로 흐르는 절대적인 척도이다. 이들은 물리적 상호작용에 의해 그 구조가 휘거나 흐름이 왜곡되지 않는 절대적인 배경이다.</li>
+                    <li><strong>에너지 보존의 절대성 (Absolute Conservation of Energy):</strong> 계 내부의 에너지는 형태가 변환될 뿐, 총량은 절대적으로 보존한다.</li>
+                    <li><strong>전하량 보존의 절대성 (Absolute Conservation of Charge):</strong> 전하량($Q$ )은 우주를 구성하는 근원적 실체로서, 절대적으로 보존한다.</li>
                 </ul>
 
-                <h3>2.2. 5대 근본 상수</h3>
+                <h3>2.2. 통합장이론(UFT)의 5대 근본 상수 (Fundamental Constants)</h3>
                 <div class="math-box">
                     $$ \pi, \quad k, \quad c, \quad Q_e, \quad h $$
                 </div>
-                <p>UFT는 위 5가지 상수만을 인정하며, $\gamma, G, \epsilon_0, \mu_0$ 등의 사용을 금지합니다.</p>
+                <p>UFT는 위 5가지 근본 상수만을 인정하며, 이 외에 현대 물리 이론들의 다른 상수들($\gamma, G, \epsilon_0, \mu_0$ 등)은 절대 사용을 금지한다.</p>
+                <ul>
+                    <li><strong>원주율 상수 ($\pi$ ):</strong> 공간의 구조와 회전 운동을 규정하는 절대적인 기하학적 비율.</li>
+                    <li><strong>쿨롱 상수 ($k$ ):</strong> 전하 간 상호작용의 세기를 결정하는 힘의 효율 상수이자 매질의 특성값.</li>
+                    <li><strong>광속도 상수 ($c$ ):</strong> 단위전하입자(Ucp)가 공간 상에서 가질 수 있는 이동 속도의 한계이자, 장(Field)의 전파 속도.</li>
+                    <li><strong>전하량 단위 ($Q_e$ ):</strong> 단위전하입자(Ucp)의 기본 전하량이자, 우주를 구성하는 전자기적 에너지의 기본 단위.</li>
+                    <li><strong>플랑크 상수 ($h$ ):</strong> 에너지가 공간 상에서 회전 운동(진동)할 때의 각운동량 비례 계수이자 에너지의 최소 단위.</li>
+                </ul>
             </section>
 
+            <!-- 3. 공식 -->
             <section id="formulas">
                 <h2>3. UFT 통합 공식: 우주의 절대 공식 5가지</h2>
-                <p>UFT의 모든 물리량($Q, E, m, F$)은 <strong>방향성을 가진 벡터량</strong>입니다.</p>
+                <p>본 장에서는 통합장이론(UFT) 의 물리적 현상을 기술하는 데 있어 반드시 사용되어야 하는 5가지 절대 공식을 정의한다. 이 공식들은 이후 전개될 모든 에너지 및 힘의 해석에 대한 근본적인 수학적 도구가 된다. 특히 UFT의 모든 물리량($Q, E, m, F$ )은 스칼라가 아닌 방향성을 가진 벡터량(Vector Quantity) 임을 대전제로 한다.</p>
 
-                <h3>제1공식: 고전 역학 운동 에너지</h3>
+                <h3>3.1. 물리량의 벡터성 정의 (Vector Nature of Physical Quantities)</h3>
+                <p>기존 물리학에서 스칼라로 취급되던 전하($Q$ ), 에너지($E$ ), 질량($m$ )은 UFT 체계에서 모두 고유의 방향성을 가진 벡터로 확장정의된다. 또한 이들을 다루는 연산 규칙을 다음과 같이 정의한다.</p>
+                <ul>
+                    <li><strong>벡터 연산의 대원칙 (Principle of Vector Operation):</strong> UFT에서 벡터와 벡터의 곱($\cdot$ )은 반드시 벡터(Vector) 이다. 물리량 간의 연산 결과는 스칼라로 변환되지 않으며, 상호작용하는 물리량들의 고유한 방향성이 보존된다.</li>
+                </ul>
+                <div style="background: rgba(255,0,0,0.1); padding: 15px; border-left: 4px solid #ff7b72; margin: 15px 0;">
+                    <strong>저자의 수학적 비판: 기존 대수학의 오류 지적</strong><br>
+                    현대 수학(선형대수학)은 내적(Inner Product) 의 결과를 스칼라(Scalar) 로 정의함으로써, 물리적 상호작용 후에 '방향성' 이 소멸하는 치명적인 오류를 범하고 있다. 이는 수학적 계산의 편의를 위한 약속일 뿐, 실제 우주의 물리적 현상과는 맞지 않는다. UFT는 이러한 '방향을 거세하는 잘못된 수학적 정의' 를 거부하며, 물리적 실재에 맞게 "방향이 보존되는 벡터 곱" 을 표준으로 채택한다.
+                </div>
+                <ul>
+                    <li><strong>추가적인 UFT 수학적 공리 (LBA):</strong> 우주에 '완전한 0'이나 '완전한 무한대'는 존재하지 않으며, 모든 물리량은 물리적 최소 단위(Limit Base, $\delta$ )와 최대 한계치를 가진다. 따라서 특이점 상황에서도 연산은 멈추지 않고 물리적 실체끼리의 약분을 통해 유한값이 산출된다.</li>
+                </ul>
+                <ul>
+                    <li><strong>전하 벡터 ($\vec{Q}$ ):</strong> 복소 평면상에서 전하량($\vec{Q}$ )와 자속($\vec{\Psi}$ )가 직교하는 전/자하량 벡터.</li>
+                    <li><strong>에너지 벡터 ($\vec{E}$ ):</strong> 힘이 작용하거나 보존되는 방향을 포함하는 벡터.</li>
+                    <li><strong>질량 벡터 ($\vec{m}$ ):</strong> 내부 전하들의 정렬 방향에 따라 관성력이 작용하는 방향을 나타내는 벡터.</li>
+                </ul>
+
+                <h3>3.2. 제1공식: 고전 역학 운동 에너지 공식 (Classical Kinetic Energy Formula)</h3>
+                <p>본 공식은 뉴턴의 고전 역학을 그대로 수용하면서, 스칼라로 취급되던 물리량을 벡터로 확장 해석한 것이다. 상대론적 감마인자($\gamma$ )를 배제하고, 고전 역학의 형태를 따르되 벡터성을 유지한다.</p>
                 <div class="math-box">
                     $$ \vec{E}_{kinetic} = \frac{1}{2} (mv^2) \vec{i}_x $$
                 </div>
+                <p>여기서 $v^2$ 은 단순 스칼라가 아니라, 동일 방향 벡터의 곱으로서 방향성이 보존되는 벡터량이다. 따라서 운동 에너지는 질량($\vec{m}$ )과 속도($\vec{v}$ )의 방향성이 결합된 완전한 벡터가 된다.</p>
 
-                <h3>제2공식: 상대성 에너지 공식</h3>
+                <h3>3.3. 제2공식: 상대성 에너지 공식 (Relativistic Energy Formula)</h3>
+                <p>본 공식은 아인슈타인의 특수 상대성 이론을 그대로 수용하면서, 에너지와 질량에 대해 정지/동적 상태를 구분하여 벡터로 확장 해석한다.</p>
                 <div class="math-box">
                     $$ \vec{E}_{total} = \vec{m}_{dynamic} c^2 = \vec{E}_{static} + \vec{E}_{kinetic} $$
                 </div>
 
-                <h3>제3공식: 동적 질량 공식</h3>
+                <h3>3.4. 제3공식: 동적 질량 공식 (Dynamic Mass Formula)</h3>
+                <p>운동 에너지가 실제 질량 증가분($\Delta m$ )으로 축적된다는 것을 의미하는 UFT 고유의 공식이다. 질량은 불변의 상수가 아니라, 정지 질량에 운동 에너지가 축적될 수 있는 동적 물리량이다.</p>
                 <div class="math-box">
                     $$ \vec{m}_{dynamic} = \vec{m}_{static} + \frac{\vec{E}_{kinetic}}{c^2} $$
                 </div>
 
-                <h3>제5공식: 양자 에너지 공식</h3>
+                <h3>3.5. 제4공식: 확장된 쿨롱 법칙 (Extended Coulomb's Law)</h3>
+                <p>쿨롱의 실험 법칙을 그대로 수용하면서, 이를 상태에 따라 이원화하여 복소 전하/자하 벡터 간의 기하학적 상호작용으로 확장 해석한다.</p>
+                <p>**(1) 초기 힘 (Initial Force):** 단순 인력이 작용하는 단계.</p>
                 <div class="math-box">
-                    $$ \vec{E} = h \vec{\nu} $$
+                    $$ \vec{F}_{initial} = k \frac{\vec{Q}_1 \cdot \vec{Q}_2}{r^2} $$
+                </div>
+                <p>**(2) 안정 상태 (Stable Charge State):** 상호 공전하며 동적 평형에 진입한 상태. 전기장과 자기장이 융합되는 **복소 통합 연산($\oplus$ )**이 적용된다.</p>
+                <div class="math-box">
+                    $$ \vec{Q}_{3_{stable}}(t) = {\vec{Q}_1(t) \oplus \vec{Q}_2(t)} $$
+                </div>
+
+                <h3>3.6. 제5공식: 양자 에너지 공식 (Quantum Energy Formula)</h3>
+                <p>에너지를 전하 내부의 공전 궤도 및 회전 주파수와 연계된 기하학적 벡터량으로 확장 해석한다.</p>
+                <div class="math-box">
+                    $$ \vec{E} = h \vec{\nu} = h \frac{c}{2\pi r_0} \vec{n} $$
+                </div>
+                <p>여기서 $h$ 는 추상적 상수가 아니라 전자 내부 자속 Vortex가 가지는 고유의 회전 각운동량이다. 또한 주파수($\nu$ )는 $c = 2\pi r_0 \nu$ 의 관계를 통해 기하학적으로 정의된다.</p>
+
+                <h3>3.7. 상수의 대통합 (Grand Unification of Constants)</h3>
+                <p>UFT의 5대 상수는 서로 독립적이지 않으며, 미세구조상수($\alpha \approx 1/137$)를 매개로 하여 다음과 같은 기하학적 균형 관계를 통해 하나의 체계로 통합된다.</p>
+                <p>제5공식에서 규명된 $c = 2\pi r_0 \nu$ 를 미세구조상수 공식에 대입하면, **기하학적 상수($2\pi$)**가 소거되면서 양자 에너지($h\nu$)와 전기적 위치 에너지($k Q_e^2/r_0$)가 $\alpha$ 를 통해 연결되는 최종적인 통합 공식이 도출된다.</p>
+                <div class="math-box">
+                    $$ \frac{2\pi k Q_e^2}{h (2\pi r_0 \nu)} = \alpha \quad \Rightarrow \quad \frac{k Q_e^2}{h r_0 \nu} = \alpha $$
+                </div>
+                <div class="math-box">
+                    $$ h \nu = \frac{k Q_e^2}{\alpha r_0} $$
                 </div>
             </section>
 
+            <!-- 4. 입자 -->
             <section id="particles">
-                <h2>4. 근본 요소 및 입자 (Fundamental Elements)</h2>
-                <h3>4.1. 근본전하요소 (FCE)</h3>
-                <p>질량이 0이며, 전하의 근원이 되는 가장 기초적인 요소. $C_f$ 속도로 운동합니다.</p>
-                
-                <h3>4.2. 근본전하입자 (Fcp)</h3>
-                <p>FCE 쌍이 초광속($c_{ff}$)으로 상호 공전하는 시스템으로, 이 공전 운동으로 인해 전하와 질량이 창발됩니다.</p>
-            </section>
-
-            <section id="charge">
-                <h2>5. 전하 $\vec{Q}$의 확장 정의</h2>
-                <p>전자기장($\mathbf{E}, \mathbf{B}$)은 입자들의 실제적인 흐름(Flow)입니다. 전하와 자하는 $c_{ff}$ 주기로 상호 교대하며 존재합니다.</p>
-            </section>
-
-            <section id="light">
-                <h2>6. 광속($c$)의 창발 및 관성</h2>
-                <p>광속은 절대 상수가 아니라, Fcp 시스템의 동역학적 특성에 의해 창발되는 물리적 결과값입니다. 관성은 입자 이동 시 발생하는 전하와 자하 간의 시공간적 지연($ds$)에 의한 추진력의 결과입니다.</p>
-            </section>
-
-            <section id="ucp">
-                <h2>7. 단위전하입자 (Ucp) 및 전자 (Ep)</h2>
-                <p>Ucp는 다수의 Fcp가 융합된 궤도체이며, 통상적으로 전자가 이에 해당합니다. 다단계의 완전융합 궤도체 구조를 가집니다.</p>
-            </section>
-
-            <section id="energy">
-                <h2>8. 질량-에너지 변환</h2>
-                <p>동적 질량($M_{dynamic}$)은 에너지의 응축 형태이며, 마스터 방정식을 따릅니다.</p>
-            </section>
-
-            <section id="dynamics">
-                <h2>9. 동역학 및 안정성</h2>
-                <p>전하는 외부 속도와 무관하게 내부 최외곽 Fcp의 공전으로 결정되며, 특정 안정화 속도($v_{stable}$)로 공전하여 구조를 유지합니다.</p>
-            </section>
-
-            <section id="fractal">
-                <h2>10. 우주의 프랙탈 구조 (Fractal Structure)</h2>
-                <p>우주는 FCE에서 천체에 이르기까지 동일한 패턴을 공유합니다.</p>
+                <h2>4. 근본 요소 및 입자 (Fundamental Elements and Particles)</h2>
+                <h3>4.1. 근본전하요소 (FCE, Fundamental Charge Element)</h3>
                 <ul>
-                    <li>Level 0: FCE</li>
-                    <li>Level 1: Fcp (근본전하입자)</li>
-                    <li>Level 2: Ucp / Ep (단위전하입자)</li>
-                    <li>Level 3: H (수소 원자)</li>
-                    <li>Level 4~: 물질, 천체</li>
+                    <li><strong>정의:</strong> 질량이 0이며, 전하의 근원이 되는 가장 기초적인 요소. ($\mathbf{FCE}{+}, \mathbf{FCE}{-}$)</li>
+                    <li><strong>특징:</strong> $C_f$ 속도로 운동한다.</li>
+                </ul>
+                
+                <h3>4.2. 근본전하입자 (Fcp, Fundamental Charge Particle)</h3>
+                <ul>
+                    <li><strong>정의:</strong> $\text{FCE}$ 쌍이 초광속($c_{ff}$ )으로 상호 공전하는 시스템.</li>
+                    <li><strong>창발:</strong> 이 공전 운동으로 인해 **전하($\pm \mathbf{1Qe}$ )**와 **질량($m_{\mathbf{Fcp}}$ )**이 창발한다.</li>
                 </ul>
             </section>
 
-            <section id="lba">
-                <h2>11. 리미트 기반 대수학 (LBA)</h2>
-                <p>물리적 실재를 반영하여 부정형($0/0, \infty/\infty$)을 '균형'과 '수렴'의 관점에서 해결하는 새로운 수학적 공리 체계입니다.</p>
+            <!-- 5. 전하 -->
+            <section id="charge">
+                <h2>5. 전하 $\vec{Q}$ 의 확장 정의: 표준 모델 (Standard Model of Charge)</h2>
+                <h3>5.1. 복소 전하 벡터 (Complex Charge Vector)</h3>
+                <p>전하를 단순한 스칼라량이 아닌, 전기적 성질(실수부/국소전기장)과 자기적 성질(허수부/국소자속 $\psi$)이 공존하는 <strong>복소 전하 벡터(Complex Charge Vector)</strong>로 정의한다.</p>
+
+                <h3>5.2. 전하와 자하의 정의 및 교대</h3>
+                <ul>
+                    <li><strong>자하($\mathbf{Jaha}$ ):</strong> Fcp 중심의 방향성을 가진 동적 실체.</li>
+                    <li><strong>시간 교대 (Time Alternation):</strong> 전하와 자하는 $c_{ff}$ 주기로 상호 교대하며 존재한다. 이는 관측상 영속적인 전하로 나타난다.</li>
+                </ul>
+
+                <h3>5.3. 정적 상태의 메커니즘</h3>
+                <p><strong>동역학적 정지:</strong> 거시적으로 정지해 있어도 내부적으로는 광속 공전이 지속되므로 전하와 질량은 불변한다.</p>
             </section>
 
-            <section id="reinterp">
-                <h2>12. 현상론적 재해석</h2>
-                <p>중력, 강력, 약력을 모두 전자기력의 특수한 형태(포텐셜 경도 등)로 통합하여 설명합니다.</p>
+            <!-- 6. 광속/관성 -->
+            <section id="light">
+                <h2>6. 광속($c$ )의 창발 및 관성 (Emergence of c & Inertia)</h2>
+                <h3>6.1. 광속의 창발</h3>
+                <p>광속($c$ )은 절대 상수가 아니라, Fcp 시스템의 동역학적 특성(주파수와 거리의 곱)에 의해 창발되는 물리적 결과값이다.</p>
+                <div class="math-box">
+                    $$ \epsilon_0 \mu_0 = \frac{1}{c^2} \quad \Rightarrow \quad c^2 = \frac{1}{\epsilon_0 \mu_0} = \frac{1}{\epsilon_0} \frac{1}{\mu_0} $$
+                </div>
+                <p>위 식은 전기장 상수와 자기장 상수의 곱, 즉 <strong>단위 전하량과 단위 자하량의 곱이 광속도의 제곱 속도($c^2$)</strong>가 됨을 나타낸다. 하나의 전기장상수인 단위전하(Ucp)는 그대로 두고, 자기장상수 $1/\mu_0$ 에 대한 해석을 상호공전하는 두 개의 Fcp라고 보면, 이 Fcp 둘의 공전 접선속도가 $c^2$ m/s라는 의미이다. 이는 UFT 관점에서 <strong>Fcp의 실제 공전 속도가 $c^2$ 임을 의미</strong>하며, 두 개의 전하가 $c^2$ 의 초광속으로 상호 공전할 때 그 중심에 자기장(자하량)이 생성되는 메커니즘을 설명한다.</p>
+
+                <h3>6.2. 관성의 근원</h3>
+                <p>관성은 입자가 이동할 때 발생하는 전하와 자하 간의 미세한 시간적/공간적 지연($ds$ )에 의한 추진력의 결과이다.</p>
+            </section>
+
+            <!-- 7. 단위전하입자 (Ucp) 및 전자 (Ep) (Structure of Ucp/Ep)</h2>
+                <ul>
+                    <li><strong>정의:</strong> $\text{Ucp}$ (단위전하입자)는 다수의 $\text{Fcp}$ 가 융합된 궤도체이다. 통상적으로 전자(Ep)가 이에 해당한다. 이는 전자가 단순 점 입자가 아닌 <strong>내부 구조를 가진 복합 시스템</strong>임을 의미한다.</li>
+                    <li><strong>구조:</strong> 다단계의 완전융합 궤도체 구조를 가진다.</li>
+                    <li><strong>특성:</strong> 내부 동역학에 의해 최종적인 전하($\pm 1Qe$ )와 질량이 결정한다.</li>
+                </ul>
+            </section>
+
+            <!-- 8. 질량-에너지 변환 (Mass-Energy Conversion)</h2>
+                <ul>
+                    <li><strong>원리:</strong> 동적 질량($M_{dynamic}$ )은 에너지의 응축 형태이며, 해체 시 광속을 매개로 에너지로 환원한다.</li>
+                    <li><strong>공식:</strong> 마스터 방정식 $\vec{E}_{total} = \vec{m}_{dynamic} c^2$ 를 따른다.</li>
+                </ul>
+            </section>
+
+            <!-- 9. 단위전하입자(Ucp)의 동역학 및 안정성</h2>
+                <ul>
+                    <li><strong>전하 결정:</strong> 외부 속도와 무관하게 내부 최외곽 Fcp의 공전으로 전하가 결정한다.</li>
+                    <li><strong>안정성:</strong> 특정 안정화 속도($v_{stable}$ )로 공전하여 붕괴되지 않고 구조를 유지한다.</li>
+                </ul>
+            </section>
+
+            <!-- 10. 우주의 프랙탈 구조 (Fractal Structure)</h2>
+                <p>우주는 미시(FCE)에서 거시(천체)에 이르기까지 동일한 기하학적/동역학적 패턴(자기 유사성)을 공유한다. 특히 미시 세계(Fcp)의 초광속 공전 궤도 시스템은 거시 세계(태양계, 은하)의 궤도 운동 원리와 동일한 메커니즘으로 작동하는 동역학적 프랙탈 구조를 가진다.</p>
+                <h3>10.1. 계층 구조 (Hierarchy)</h3>
+                <ul>
+                    <li>Level 0: FCE</li>
+                    <li>Level 1: Fcp (근본전하입자)</li>
+                    <li>Level 2: Ucp / Ep (단위전하입자 / 전자)</li>
+                    <li>Level 3: H (수소 원자 - 프랙탈 기본 단위)</li>
+                    <li>Level 4~: 다중 원소, 물질, 천체</li>
+                </ul>
+            </section>
+
+            <!-- 11. 리미트 기반 대수학 (LBA)</h2>
+                <p>LBA는 물리적 실재를 반영하여 부정형($0/0, \infty/\infty$ 등)을 '균형'과 '수렴'의 관점에서 해결하는 새로운 수학적 공리 체계이다.</p>
+            </section>
+
+            <!-- 12. 현상론적 재해석 (Phenomenological Reinterpretation)</h2>
+                <ul>
+                    <li><strong>중력의 통합:</strong> 중력, 강력, 약력을 모두 전자기력의 특수한 형태(포텐셜 경도, 근거리 상호작용 등)로 통합하여 설명한다.</li>
+                    <li><strong>미세구조상수($\alpha$)와 화학적 결합의 원천:</strong> 미세구조상수($\alpha \approx 1/137$)는 전자기적 상호작용의 구조적 기어비(Gear Ratio)로 해석한다. 수소 원자의 전기적 중성은 완벽한 0이 아니며, 약 $1/137$ 수준의 미세한 <strong>'잔여 유효 전하(Residual Effective Charge)'</strong>가 존재하는데, UFT는 이를 분자 결합, 이온 결합, 공유 결합 등 화학적 결합을 가능케 하는 근원적인 힘(Digital Glue)으로 재해석한다.</li>
+                </ul>
             </section>
 
             <footer style="margin-top: 100px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.8rem; text-align: center;">
