@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFT 복소전하벡터 정의 및 상호작용 (Ver.30)</title>
+    <!-- Noto Sans KR 고딕체 로드 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- MathJax 설정: 수식 렌더링 최적화 -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --bg-color: #0d1117; /* 저자님 지시: 검은색 계열 바탕 */
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --highlight-color: #79c0ff;
+            --border-color: #30363d;
+            --warning-red: #ff7b72;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            width: 100%;
+            padding: 80px 40px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
+        }
+
+        h1 { font-size: 2.5rem; color: #fff; margin-bottom: 15px; }
+        .version-tag { 
+            display: inline-block; 
+            padding: 8px 20px; 
+            border-radius: 25px; 
+            background: rgba(88, 166, 255, 0.1); 
+            color: var(--accent-color); 
+            font-size: 1rem; 
+            border: 1px solid var(--accent-color);
+            font-weight: 700;
+        }
+
+        h2 { font-size: 2rem; color: var(--accent-color); margin-top: 80px; border-left: 6px solid var(--accent-color); padding-left: 20px; margin-bottom: 30px; }
+        h3 { font-size: 1.6rem; color: var(--highlight-color); margin-top: 50px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+        p { margin-bottom: 25px; font-weight: 300; font-size: 1.1rem; text-align: justify; }
+        strong { color: #fff; font-weight: 700; }
+
+        .math-block {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 35px;
+            margin: 35px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            overflow-x: auto;
+        }
+
+        .box-highlight {
+            border: 2px solid var(--accent-color);
+            padding: 20px;
+            display: inline-block;
+            border-radius: 10px;
+            background: rgba(88, 166, 255, 0.05);
+        }
+
+        .critic-box {
+            background: rgba(255, 123, 114, 0.05);
+            border-left: 5px solid var(--warning-red);
+            padding: 25px;
+            margin: 40px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        ul { padding-left: 25px; margin-bottom: 35px; }
+        li { margin-bottom: 15px; font-weight: 300; font-size: 1.05rem; }
+
+        .note-section {
+            background: #161b22;
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px dashed var(--border-color);
+            margin: 30px 0;
+        }
+
+        footer {
+            margin-top: 120px;
+            text-align: center;
+            color: #8b949e;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            padding-top: 50px;
+        }
+
+        /* LaTeX Spacing Adjustment for rendered content */
+        .mjx-chtml { white-space: normal; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <h1>UFT 복소전하벡터 정의 및 상호작용에 관한 수식 전개</h1>
+            <div class="version-tag">Version 30.0 (Bae)</div>
+            <p style="margin-top: 20px; color: #8b949e;">X축 스핀 & yz평면 Vortex 결합, 상호작용 수식 전개 및 물리적 함의 검토</p>
+        </header>
+
+        <section id="intro">
+            <p>중심점 복소 전하의 기하학적 거동과 그에 따른 전자기력 발산 메커니즘을 수식화 한다. 이 수식 모델은 전하의 내부 스핀 상태가 어떻게 3D 전기력과 자기력 Vortex를 형성하는지를 설명한다.</p>
+        </section>
+
+        <section id="section1">
+            <h2>1. 단일 복소전하벡터에 대한 기하학적 거동 모델</h2>
+            <p>UFT 복소전하벡터 $\vec{\mathbf{Q}}$ 에 대한 정의 수식은 아래와 같다.</p>
+            <div class="math-block">
+                <div class="box-highlight">
+                    $$\vec{\mathbf{Q}} = Q \sin(\omega t) [\mathbf{i}_x] \oplus \cos(\omega t) [\mathbf{i}_{yz}]$$
+                </div>
+            </div>
+            <ul>
+                <li><strong>중심점 복소 전하:</strong> 중심점에 복소 전하가 전기력 벡터(전하)와 자기력 벡터(자하)의 형태로 존재함.</li>
+                <li><strong>전기력 발산:</strong> 중심점에서 전하 $Q$ 는 전기력을 3D 모든 공간으로 발산하며, 그 전기력의 크기는 시간의 경과에 맞춰 사인파의 크기로 발산함. 즉, 복소전하 벡터($\vec{\mathbf{Q}}$) 의 전하부 크기는 $Q \sin(\omega t)$ </li>
+                <li><strong>자기력 Vortex:</strong> $+x$ 축이 기준인 경우, 이에 수직 평면인 $yz$ 평면 상에만 회전하는 나선형 자기력 Vortex를 가지며, 그 자기력의 크기는 시간의 경과에 맞춰 전기력 대비 90도 위상의 시간차를 가진 코사인파 크기의 평면 Vortex임. 즉, 복소전하 벡터($\vec{\mathbf{Q}}$) 의 자하부 크기는 $\mathbf{i} \cos(\omega t)$ 이고, 자기력 평면 Vortex의 방향은 $+y \rightarrow +z$ 나선형임.</li>
+                <li><strong>스핀 방향:</strong> 스핀방향은 이 복소전하 벡터의 자기력 평면 Vortex 방향을 의미하며, 오른손법칙이 적용된 $+x$ 방향으로 점자기력(N극)을 $-x$ 방향으로 점자기력(S)를 발현함. 즉, 이 경우 즉, $+y \rightarrow +z$ 방향이므로 이 복소전하벡터의 스핀 방향은 CCW(Counter-Clock-Wise)이며, $+x$ 축방향의 점자기력이 형성됨. 이 점자기력을 UFT에서는 자하라는 용어로 정의하여 사용함. 즉, 이 자하는 오직 하나의 직선방향에만 자기력을 행사한다는 의미임.</li>
+            </ul>
+            <p>전하는 모든 공간으로 전기력(사인파 형태로 $+$ 와 $-$ 모두)을 발산하지만, 자하는 오직 단일 평면상에서 자기력이 중심점으로 수렴하며 $+x$ 축방향으로 자기력(N극)을 행사할 수 있는 잠재력만 지니고 있다는 의미임.</p>
+        </section>
+
+        <section id="section2">
+            <h2>2. 복소전하벡터 2개의 상호작용 : UFT 확장된 쿨롱법칙 수식 적용 및 전개</h2>
+            <h3>인접한 두 복소전하벡터 사이에 작용하는 확장정의된 UFT 쿨롱인력 수식 및 동적평형 후 새로운 복소전하 탄생</h3>
+            <p>인접해 위치한 두 복소전하 벡터간에 발생하는 초기 힘의 크기와 방향성을 근본 5대 상수 중 하나인 쿨롱상수 $k$ 와 두 입자 사이의 간격 $r$ 을 적용하며, 인력의 작용에 대한 수식을 표현하기 위해 하나의 복소전하 벡터 $\vec{\mathbf{Q}}$ 는 음의 부호를 부여하고, 간략화를 위해 두 복소전하의 크기는 동일하다고 가정한다. 상호작용하는 두 힘에 대한 UFT이론의 연산방법은 UFT 곱의 연산규칙을 적용하며 곱의 연산기호는 $\otimes$ 를 적용한다. 따라서 UFT이론을 적용한 쿨롱인력에 대한 수식은 아래와 같다.</p>
+
+            <div class="math-block">
+                $$\vec{\mathbf{F}} = \frac{k}{r^2} \Big( -\vec{\mathbf{Q}} \otimes \vec{\mathbf{Q}} \Big)$$
+            </div>
+
+            <p>각각의 벡터 $Q$ 에 대한 정의식을 확장된 쿨롱인력 정의식에 대입해서 정리하면 아래와 같다.</p>
+            <div class="math-block">
+                $$= \frac{k}{r^2} \Bigg( \Big( -Q \sin(\omega t) [\mathbf{i}_x] \oplus -\cos(\omega t) [\mathbf{i}_{yz}] \Big) \otimes \Big( Q \sin(\omega t) [\mathbf{i}_x] \oplus \cos(\omega t) [\mathbf{i}_{yz}] \Big) \Bigg)$$
+            </div>
+
+            <p>동일축 벡터를 먼저 정리하고, cross되는 성분을 뒤에 정리하면 아래와 같다.</p>
+            <div class="math-block">
+                $$\begin{aligned} = \frac{k}{r^2} \Bigg( & \Big( -Q \sin(\omega t) [\mathbf{i}_x] \otimes Q \sin(\omega t) [\mathbf{i}_x] \Big) \oplus \Big( -\cos(\omega t) [\mathbf{i}_{yz}] \otimes \cos(\omega t) [\mathbf{i}_{yz}] \Big) \\ &\oplus \Big( -Q \sin(\omega t) [\mathbf{i}_x] \otimes \cos(\omega t) [\mathbf{i}_{yz}] \Big) \oplus \Big( -\cos(\omega t) [\mathbf{i}_{yz}] \otimes Q \sin(\omega t) [\mathbf{i}_x] \Big) \Bigg) \end{aligned}$$
+            </div>
+
+            <p>각각의 단위벡터 끼리의 수식으로 정리하면 아래와 같다. UFT 벡터 곱 연산은 동일축 및 동일 평면상에서 스칼라적으로 곱하고 동일방향의 벡터를 남긴다.</p>
+            <div class="math-block">
+                $$\begin{aligned} = \frac{k}{r^2} \Bigg( & \Big( -Q^2 \sin^2(\omega t) \Big) [\mathbf{i}_x] \oplus \Big( -\cos^2(\omega t) \Big) [\mathbf{i}_{yz}] \\ &\oplus \Big( -Q \sin(\omega t) [\mathbf{i}_x] \otimes \cos(\omega t) [\mathbf{i}_{yz}] \Big) \oplus \Big( -\cos(\omega t) [\mathbf{i}_{yz}] \otimes Q \sin(\omega t) [\mathbf{i}_x] \Big) \Bigg) \end{aligned}$$
+            </div>
+
+            <div class="note-section">
+                <p><strong>1,2번항과 3,4번항의 물리적인 의미는 아래와 같다:</strong></p>
+                <ol>
+                    <li>위 수식의 1번과 2번항의 물리적 의미는 $x$ 축 방향에 $\frac{k}{r^2} Q^2 \sin^2(\omega t)$ 의 전기적인 인력이 작용하고, $yz$ 축평면상에는 $\frac{k}{r^2} \cos^2(\omega t)$ 의 자기적인 인력이 작용함을 의미하고 있으며,</li>
+                    <li>위 수식의 3번과 4번항의 물리적 의미는 $x$ 축방향과 $yz$ 평면상의 힘의 비틀림을 의미한다.</li>
+                </ol>
+            </div>
+
+            <p>3,4번식을 다시 쓰고 더 전개해보면 아래와 같다. 이 3,4번항에서 $[\mathbf{i}_x]$ 축과 $[\mathbf{i}_{yz}]$ 평면 사이에는 상호 작용이 없으므로, 동일한 축 및 평면끼리 묶어서 추가로 전개하면 아래와 같다.</p>
+            <div class="math-block">
+                $$\Big( -Q \sin(\omega t) [\mathbf{i}_x] \oplus Q \sin(\omega t) [\mathbf{i}_x] \Big) \oplus \Big( \cos(\omega t) [\mathbf{i}_{yz}] \oplus -\cos(\omega t) [\mathbf{i}_{yz}] \Big)$$
+            </div>
+
+            <p>동일 단위백터끼리 결합해서 정리하면 아래와 같다.</p>
+            <div class="math-block">
+                $$= \Big( -Q \sin(\omega t) \oplus Q \sin(\omega t) \Big) [\mathbf{i}_x] \oplus \Big( \cos(\omega t) \oplus -\cos(\omega t) \Big) [\mathbf{i}_{yz}]$$
+            </div>
+
+            <p>충돌하는 직선 전기력과 충돌하는 평면 자기력에 대한 UFT 연산 규칙은 아래와 같다. $-Q \sin(\omega t) \oplus Q \sin(\omega t) = 2Q \sin(\omega t)$ , $\cos(\omega t) \oplus -\cos(\omega t) = 2\cos(\omega t)$ </p>
+            <div class="math-block">
+                $$= 2Q \sin(\omega t) [\mathbf{i}_x] \oplus 2\cos(\omega t) [\mathbf{i}_{yz}]$$
+                $$= 2 \Big( Q \sin(\omega t) [\mathbf{i}_x] \oplus \cos(\omega t) [\mathbf{i}_{yz}] \Big)$$
+            </div>
+
+            <p>전체 수식을 다시 정리하면 아래와 같다.</p>
+            <div class="math-block">
+                $$= \frac{k}{r^2} \Bigg( \underbrace{ -\Big( Q^2 \sin^2(\omega t) [\mathbf{i}_x] \oplus \cos^2(\omega t) [\mathbf{i}_{yz}] \Big) }_{\text{초기 쿨롱인력의 작용}} \oplus \underbrace{ 2\Big(Q \sin(\omega t) [\mathbf{i}_x] \oplus \cos(\omega t) [\mathbf{i}_{yz}] \Big) }_{\text{동적평형 상태의 새로운 복소전하}} \Bigg)$$
+            </div>
+
+            <div class="note-section">
+                <p><strong>위 전체 수식에 대한 물리적 함의:</strong></p>
+                <ul>
+                    <li>$x$ 축 방향으로 $\frac{k}{r^2} Q^2 \sin^2(\omega t)$ 크기의 전기적 인력이 작용하고, $yz$ 평면 끼리의 방향으로 $\frac{k}{r^2} \cos^2(\omega t)$ 크기의 자기적 인력이 작용하면서 두 복소전하는 더욱 근접하게 된다.</li>
+                    <li>떨어져 있던 두 복소전하가 인접하면서 위 두 제곱항의 에너지를 소비하고, 아래 두 항의 에너지를 갖게 되면서 동적 평형 상태에 도달하게 되며, 동적평형 상태에서의 형태는 새로운 하나의 전하와 동일한 형태이다.</li>
+                    <li>즉, 두 복소전하벡터 $\vec{\mathbf{Q}}$ 가 융합하여 동적평형을 이룬 상태의 새로운 복소전하벡터 $\vec{\mathbf{Q}}_3$ 의 수식은 아래와 같으며, 그 전하량은 원래 전하량의 2배이며, 방향은 동일하다.</li>
+                </ul>
+                <div class="math-block">
+                    $$\vec{\mathbf{Q}}_3 = 2 \Big(Q \sin(\omega t) [\mathbf{i}_x] \oplus \cos(\omega t) [\mathbf{i}_{yz}] \Big) = 2 \vec{\mathbf{Q}}$$
+                </div>
+                <p>위와 같이 3차원 공간의 모든 방향에서 인력이 작용하여 두 전하는 더욱 인접하게된다. </p>
+            </div>
+        </section>
+
+        <section id="section3">
+            <h2>3. 결론</h2>
+            <p>통합장이론(UFT)에서의 복소전하 벡터는 전기력만 발산하는 단순한 점입자가 아니다.</p>
+            <ul>
+                <li>이 복소전하 벡터는 하나의 동일한 지점(point)에서, 전기력을 발산시키는 점전하와, 이 점전하에 대해 하나의 평면상에 나선형 자기력 소용돌이(Vortex)인 점자하를 동시에 가진 복소 전하/자하 융합 벡터이다.</li>
+                <li>이 점입자 벡터는 현상적인 질량도 형체도 없지만, 시간적으로 정현파(사인파) 크기 $Q \sin(\omega t)$ 를 3D 모든 방향으로 발산시키는 전기력을 가진 성질과 그 전기력 크기에 시간적으로 90도 위상을 가진 정현파(코사인파) 크기를 하나의 평면상에만 나선형 소용돌이(Vortex) 자기력을 뿜어내는 성질을 지닌다.</li>
+                <li>이 2가지를 모두 지닌 전/자기적 융합 복소 벡터 입자이며, 인접한 다른 전하와의 상호 작용은 UFT이론의 곱 및 합의 연산규칙이 적용되고, 상호작용 후에는 재귀적으로 제 3의 전하를 생성한다.</li>
+            </ul>
+        </section>
+
+        <section id="section4">
+            <h2>4. UFT 복소전하 연산 규칙 및 위상 기하학적 해설</h2>
+            <p>UFT의 복소 전하 모델을 해석하기 위한 위상(Phase)의 물리적 의미와 핵심적인 UFT 연산 규칙을 명문화한다.</p>
+            <h3>4.1. 두 가지 90도 위상의 엄격한 구분</h3>
+            <ul>
+                <li><strong>공간적 90도 ($i$) :</strong> 허수 단위 $i$ 는 수학적 상상이 아니라, 3차원 공간에서 전기력 축($\mathbf{i}_x$) 에 대해 수직인 평면($\mathbf{i}_{yz}$) 상에 자기력의 Vortex가 존재함을 나타내는 <strong>'기하학적 직교성'</strong> 을 의미한다.</li>
+                <li><strong>시간적 90도 ($\sin$ vs $\cos$) :</strong> 삼각함수 sine과 cosine의 위상차는 90도이며, 이는 시간($t$) 의 흐름에 따라 전기력과 자기력이 교대로 극대화되며 각각의 힘을 상호 전달시키는 <strong>'동적 궤도 운동에 대한 위상'</strong> 을 의미한다.</li>
+                <li><strong>결론:</strong> 복소전하벡터는 이 두 가지 90도 위상이 결합되어 전기력의 3D 발산과 자기력의 2D 회전이 동시에 일어나며 $+x$ 축 방향의 전기력을 가진 전자기 복합체이다.</li>
+            </ul>
+            <h3>4.2. UFT 합의 연산 $\oplus$ 와 UFT 곱의 연산 $\otimes$ 의 연산 규칙 정리</h3>
+            <ul>
+                <li><strong>UFT 곱 ($\otimes$) 의 연산자 규칙 정의:</strong> $\otimes$ 는 동일한 축이나 동일한 평면 상의 수식을 곱할 수 있으며, 스칼라적으로 곱을 한 후 동일한 벡터를 남긴다. 수학적으로 내적의 의미와 같지만, 동일 방향 또는 동일 평면과의 내적만을 허용하며, 내적 후에는 반드시 해당 방향의 벡터를 남겨야 한다. (현재 대수학의 가장 큰 문제점이 이것이기도 하다.)</li>
+                <li><strong>UFT 합 ($\oplus$) 의 연산자 규칙 정의:</strong> 동일방향 벡터의 뺄셈(minus)은 동일 방향에서의 물리적 충돌을 의미한다. UFT 복소전하벡터의 이같은 충돌은 두 전하가 사라지는 것을 의미하는 것이 아니라, 2개의 전하가 합해지는 것을 의미한다. 즉, $1Q [\mathbf{i}_x] - 1Q [\mathbf{i}_x] = 2Q [\mathbf{i}_x]$ 가 되며, $1\psi [\mathbf{i}_{yz}] - 1\psi [\mathbf{i}_{yz}] = 2\psi [\mathbf{i}_{yz}]$ 가 된다. </li>
+                <li><strong>의미:</strong> 일반적인 내적($\cdot$) 연산 또는 회전($\nabla$) 연산, 또는 Minus 연산 등이 그 연산 후에 벡터성을 잃거나 보존성을 잃게 되는데 반해, UFT의 연산은 연산 후에도 그 벡터성은 반드시 보존되어야 하며, 또한, 전하량 보존, 에너지 보존의 법칙을 반드시 준수하는 연산을 하여야 한다.</li>
+            </ul>
+        </section>
+
+        <section id="section5">
+            <h2>5. 극성의 결정 원리: 스핀 방향성(CCW vs CW)에 의한 구별</h2>
+            <p>복소 전하는 시간의 경과에 따라 전기적/자기적으로 $+$ 와 $-$ 크기를 정현파적으로 진동하므로, 동적평형을 이루며 정지해 있는 복소전하가 극성이 $+$ 인지 $-$ 인지 구별이 되지 않다고 생각할 수 있을 가능성이 있다. 하지만, 이 복소전하의 극성은 자기적 평면 vortex의 회전방향 즉, CCW인가, CW 인가에 따라서 결정이 되는 것이다. </p>
+            <ul>
+                <li>자유공간에서의 이 복소전하는 어떠한 방향으로의 회전(CCW, CW)도 가능하다. 따라서 자유공간에 무작위로 정지한 상태로 존재하는 복소전하에 대해서는 극성을 부여할 수가 없다. 그냥 $U_{cp}$ (단위 전하 입자)인 것이다. </li>
+                <li>이 $U_{cp}$ 주변에 다른 전하나 관측기에 존재하는 자기적 극성이 인접하게 된다면, 이 $U_{cp}$ 는 그 외부 존재의 극성에 맞게 즉각적으로 인력이 작용할 수 있도록 자기적 정렬을 하게 된다. 즉, 자기적 극성을 가진 관측기가 인접하면, 인력이 작용하는 방향으로 즉각 정렬하여 인력이 발생하게 된다. </li>
+                <li><strong>진동의 모호함:</strong> $Q \sin(\omega t)$ 와 $i \cos(\omega t)$ 는 주기적으로 부호가 바뀌므로, 특정 시점의 값만으로는 이것이 양전하인지 음전하인지, N극인지 S극인지 판별할 수 없다. </li>
+                <li><strong>스핀(Spin)의 역할:</strong> 이러한 진동 상태에 <strong>'방향성(Direction)'</strong> 을 부여하는 유일한 물리적 실체가 바로 스핀이다. </li>
+                <li><strong>CCW (Counter-Clockwise, 반시계): (오른손 법칙 기준)</strong> : $yz$ 평면에서 CCW(반시계방향)로 회전하면 <strong>+극, 양전하로 작용함.</strong></li>
+                <li><strong>CW (Clockwise, 시계):</strong> : $yz$ 평면에서 CW(시계방향)로 회전하면 <strong>-극, 음전하로 작용함.</strong></li>
+            </ul>
+            <div class="critic-box">
+                <strong>결론 :</strong> 우리가 관측하는 '극성'은 입자의 고유한 알갱이 성질이 아니라, 그 입자가 공간 상에서 <strong>'어느 방향으로 회전하며(Vortex) 정지해 있는가'</strong> 에 따른 기하학적 결과물이다. 즉, 양전하와 음전하가 별도로 따로 존재하는 것이 아니며, 작용하는 상대방의 극성에 따라 양전하가 되기도 하고, 음전하가 되기도 하는 것이다. 또한, 양전하와 양전하를 인접해 두드라도 이 두 양전하는 방향을 정렬시켜 쿨롱인력이 작용하여 제 3의 전하가 된다. 
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 Bae. Unified Field Theory (UFT) Ver 0.70 - All Rights Reserved.
+        </footer>
+    </div>
+</body>
+</html>
