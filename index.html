@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>통합장이론(UFT:Unified Field Theory) Research Portal by Bae</title>
-    <!-- 폰트 및 아이콘 로드 -->
+    
+    <!-- [핵심 전략: 검색엔진 최적화(SEO)를 위한 키워드 집중 배치] -->
+    <meta name="description" content="통합장이론(UFT: Unified Field Theory) 연구 Portal by Bae 는 통합장이론(UFT)을 보다 세밀하게 체계화함으로써 복소전하벡터, 5대 근본상수, 우주의 근본 5대 공식, 3대 절대 보존 법칙, 광속의 기원 등을 통해 현대 물리학의 모순을 해결하고 우주를 통합합니다.">
+    <meta name="keywords" content="통합장이론, UFT, Unified Field Theory, 통일장이론, 복소전하, 복소전하벡터, Complex Charge Vector, 5대근본상수, 광속의기원, 자기장의기원, Bae Theory, Fcp, Ucp, 새로운물리학, 대통일장이론, Grand Unified Theory, TOE, 양자중력, 디지털접착제, Digital Glue">
+    <meta name="author" content="Bae">
+    <meta name="robots" content="index, follow">
+
+    <!-- SNS 공유 시 노출될 정보 -->
+    <meta property="og:title" content="통합장이론(UFT) - 복소전하와 우주에 존재하는 모든 힘의 통합 by Bae">
+    <meta property="og:description" content="전자기력과 운동력으로 우주의 모든 힘을 통합하는 새로운 물리학. 복소전하벡터, 5대 상수, 근본 5대 공식, UFT 연산규칙 등 확장된 물리/수학적인 정의를 통해 미시 및 거시 우주 세계에서 관측되는 모든 물리현상을 해석하고 그 근본적인 비밀을 밝힙니다.">
+    <meta property="og:type" content="website">
+
+    <!-- 브라우저 탭 타이틀 (가장 중요) -->
+    <title>통합장이론(UFT: Unified Field Theory) Research Portal by Bae</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
+        /* (스타일은 기존 다크 모드 유지) */
         :root {
             --bg-color: #0d1117;
             --sidebar-bg: #161b22;
@@ -29,7 +44,6 @@
             overflow: hidden;
         }
 
-        /* 좌측 사이드바 (트리 메뉴) */
         .sidebar {
             width: 320px;
             background-color: var(--sidebar-bg);
@@ -44,89 +58,36 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .sidebar-header h2 {
-            margin: 0;
-            font-size: 1.4rem;
-            color: #fff;
-            font-weight: 700;
-        }
+        .sidebar-header h2 { margin: 0; font-size: 1.4rem; color: #fff; font-weight: 700; }
+        .sidebar-header p { margin: 5px 0 0 0; font-size: 0.85rem; color: #8b949e; }
 
-        .sidebar-header p {
-            margin: 5px 0 0 0;
-            font-size: 0.85rem;
-            color: #8b949e;
-        }
-
-        /* 트리 메뉴 컨테이너 */
-        .tree-container {
-            flex-grow: 1;
-            overflow-y: auto;
-            padding: 10px 0;
-        }
-
+        .tree-container { flex-grow: 1; overflow-y: auto; padding: 10px 0; }
         ul { list-style: none; padding: 0; margin: 0; }
 
-        /* 챕터 아이템 */
         .chapter-item { border-bottom: 1px solid rgba(48, 54, 61, 0.3); }
 
         .chapter-title {
-            padding: 12px 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-weight: 500;
-            color: #e6edf3;
-            transition: 0.2s;
-            font-size: 0.95rem;
+            padding: 12px 20px; cursor: pointer; display: flex;
+            align-items: center; justify-content: space-between;
+            font-weight: 500; color: #e6edf3; transition: 0.2s; font-size: 0.95rem;
         }
-
-        .chapter-title:hover {
-            background-color: var(--hover-bg);
-            color: var(--accent-color);
-        }
-
-        .chapter-title i.fa-folder, 
-        .chapter-title i.fa-folder-open { margin-right: 10px; color: var(--folder-color); }
+        .chapter-title:hover { background-color: var(--hover-bg); color: var(--accent-color); }
+        .chapter-title i.fa-folder, .chapter-title i.fa-folder-open { margin-right: 10px; color: var(--folder-color); }
         .arrow { font-size: 0.8rem; transition: transform 0.3s; color: #8b949e; }
 
-        /* 서브 메뉴 */
-        .sub-menu {
-            display: none;
-            background-color: #0d1117;
-            padding: 5px 0;
-            box-shadow: inset 0 3px 6px rgba(0,0,0,0.2);
-        }
-
+        .sub-menu { display: none; background-color: #0d1117; padding: 5px 0; box-shadow: inset 0 3px 6px rgba(0,0,0,0.2); }
         .sub-menu li a {
-            display: block;
-            padding: 8px 20px 8px 52px;
-            text-decoration: none;
-            color: #8b949e;
-            font-size: 0.9rem;
-            transition: 0.2s;
-            border-left: 3px solid transparent;
-            cursor: pointer; /* 커서 포인터 추가 */
+            display: block; padding: 8px 20px 8px 52px; text-decoration: none;
+            color: #8b949e; font-size: 0.9rem; transition: 0.2s;
+            border-left: 3px solid transparent; cursor: pointer;
         }
-
-        .sub-menu li a:hover {
-            color: #fff;
-            background-color: rgba(88, 166, 255, 0.1);
-            border-left-color: var(--accent-color);
-        }
+        .sub-menu li a:hover { color: #fff; background-color: rgba(88, 166, 255, 0.1); border-left-color: var(--accent-color); }
 
         .chapter-item.active .sub-menu { display: block; }
         .chapter-item.active .chapter-title { color: var(--accent-color); background-color: rgba(88, 166, 255, 0.05); }
         .chapter-item.active .arrow { transform: rotate(180deg); color: var(--accent-color); }
 
-        /* --- 2. 우측 메인 화면 (Iframe) --- */
-        .main-view {
-            flex-grow: 1;
-            background-color: var(--bg-color);
-            display: flex;
-            flex-direction: column;
-        }
-
+        .main-view { flex-grow: 1; background-color: var(--bg-color); display: flex; flex-direction: column; }
         iframe { width: 100%; height: 100%; border: none; }
 
         @media (max-width: 768px) {
@@ -140,7 +101,8 @@
 
     <nav class="sidebar">
         <div class="sidebar-header">
-            <h2>UFT Research Lab</h2>
+            <!-- 사이드바 제목에도 핵심 키워드 배치 -->
+            <h2>통합장이론(UFT) Lab</h2>
             <p>Unified Field Theory by Bae</p>
         </div>
 
@@ -149,26 +111,27 @@
                 <!-- 0. UFT 소개 -->
                 <li class="chapter-item active">
                     <div class="chapter-title" onclick="toggleChapter(this)">
-                        <span><i class="fas fa-folder-open"></i> 0. UFT Intro</span>
+                        <span><i class="fas fa-folder-open"></i> 0. 통합장이론(UFT) 소개 (Intro)</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="javascript:void(0)" onclick="loadPage('UFT_4D_Model_Intro.html')">0.1 UFT 광속전파 4D 시뮬레이션</a></li>
-                        <li><a href="javascript:void(0)" onclick="loadPage('UFT_Abstract.html')">0.2 UFT 연구의 목적과 배경</a></li>
+                        <!-- 링크 텍스트에 'UFT', '통합장이론'을 넣어 AI가 문맥을 파악하게 유도 -->
+                        <li><a href="UFT_4D_Model_Intro.html" onclick="loadPage(event, this.href)">0.1 UFT 광속전파 4D 시뮬레이션</a></li>
+                        <li><a href="UFT_Abstract.html" onclick="loadPage(event, this.href)">0.2 통합장이론(UFT) 연구 배경</a></li>
                     </ul>
                 </li>
 
                 <!-- 1. UFT 개요 -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
-                        <span><i class="fas fa-folder"></i> 1. 통합장이론(UFT) 개요 (Overview)</span>
+                        <span><i class="fas fa-folder"></i> 1. 통합장이론(UFT) 개요</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="javascript:void(0)" onclick="loadPage('UFT_Overview.html')">1.0 통합장이론(UFT) 개요 전체보기</a></li>
-                        <li><a href="javascript:void(0)" onclick="loadPage('UFT_Constants_and_Laws.html')">1.1 UFT 3대 법칙 및 5대 상수</a></li>
-                        <li><a href="javascript:void(0)" onclick="loadPage('UFT_Universal_Formulas.html')">1.3 UFT 우주 절대 5공식</a></li>
-                        <li><a href="javascript:void(0)" onclick="loadPage('UFT_Fundamental_Elements.html')">1.4 UFT 근본전하요소 etc</a></li>
+                        <li><a href="UFT_Overview.html" onclick="loadPage(event, this.href)">1.0 UFT 개요 전체보기 (Full)</a></li>
+                        <li><a href="UFT_Constants_and_Laws.html" onclick="loadPage(event, this.href)">1.1 3대 법칙 및 5대 근본상수</a></li>
+                        <li><a href="UFT_Universal_Formulas.html" onclick="loadPage(event, this.href)">1.3 UFT 우주 절대 5공식</a></li>
+                        <li><a href="UFT_Fundamental_Elements.html" onclick="loadPage(event, this.href)">1.4 근본 전하요소 etc</a></li>
                     </ul>
                 </li>
 
@@ -179,7 +142,8 @@
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="javascript:void(0)" onclick="loadPage('UFT_Complex_Charge_Interaction_V30.html')">2.1 복소전하의 정의식 및 상호작용 (Ver.30)</a></li>
+                        <!-- '복소전하' 키워드 강조 -->
+                        <li><a href="UFT_Complex_Charge_Interaction_V30.html" onclick="loadPage(event, this.href)">2.1 복소전하의 정의식 및 상호작용 (Ver.30)</a></li>
                     </ul>
                 </li>
 
@@ -190,7 +154,7 @@
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="javascript:void(0)" onclick="loadPage('UFT_Constants_Derivation.html')">3.1 자기장 상수(mu0) 유도</a></li>
+                        <li><a href="UFT_Constants_Derivation.html" onclick="loadPage(event, this.href)">3.1 자기장 상수(mu0) 유도</a></li>
                     </ul>
                 </li>
             </ul>
@@ -198,17 +162,22 @@
     </nav>
 
     <div class="main-view">
+        <!-- 초기 로딩 시 4D 모델링 표시 -->
         <iframe id="content-frame" src="UFT_4D_Model_Intro.html" title="Main Content"></iframe>
     </div>
 
     <script>
-        // 1. 페이지 로드 함수 (주소창 해시 변경 + 아이프레임 변경)
-        function loadPage(pageUrl) {
+        // 1. 페이지 로드 함수 (AI는 href로 수집, 사람은 iframe으로 열람)
+        function loadPage(event, pageUrl) {
+            // 브라우저의 기본 이동 막기 (사람용)
+            event.preventDefault(); 
+            
             const frame = document.getElementById('content-frame');
             if (frame) {
                 frame.src = pageUrl;
-                // 주소창에 #page=파일명 형식으로 기록
-                window.location.hash = 'page=' + pageUrl;
+                // 주소창에 #page=파일명 기록 (새로고침 시 복원용)
+                const filename = pageUrl.split('/').pop(); 
+                window.location.hash = 'page=' + filename;
             }
         }
 
@@ -226,12 +195,10 @@
             }
         }
 
-        // 3. [핵심] 새로고침 시 저장된 페이지 복원 기능
+        // 3. 새로고침 시 페이지 복원 기능
         window.onload = function() {
-            // 주소창 해시 확인
             const hash = window.location.hash;
             if (hash && hash.includes('page=')) {
-                // #page= 뒷부분의 파일명을 가져옴
                 const pageUrl = hash.split('page=')[1];
                 if (pageUrl) {
                     const frame = document.getElementById('content-frame');
