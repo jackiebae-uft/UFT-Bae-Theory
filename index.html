@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>통합장이론(UFT:Unified Field Theory) Research Portal by Bae</title>
-    <!-- 폰트 및 아이콘 로드 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0d1117;        /* 전체 배경 */
-            --sidebar-bg: #161b22;      /* 사이드바 배경 */
-            --text-color: #c9d1d9;      /* 기본 글자색 */
-            --accent-color: #58a6ff;    /* 강조색 */
-            --border-color: #30363d;    /* 테두리색 */
-            --hover-bg: #21262d;        /* 마우스 호버 배경 */
-            --folder-color: #8b949e;    /* 폴더 아이콘 색상 */
+            --bg-color: #0d1117;
+            --sidebar-bg: #161b22;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --border-color: #30363d;
+            --hover-bg: #21262d;
+            --folder-color: #8b949e;
         }
 
         body {
@@ -29,7 +28,7 @@
             overflow: hidden;
         }
 
-        /* --- 1. 좌측 사이드바 (트리 메뉴) --- */
+        /* 좌측 사이드바 (트리 메뉴) */
         .sidebar {
             width: 320px;
             background-color: var(--sidebar-bg);
@@ -57,23 +56,15 @@
             color: #8b949e;
         }
 
-        /* 트리 메뉴 컨테이너 */
         .tree-container {
             flex-grow: 1;
             overflow-y: auto;
             padding: 10px 0;
         }
 
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        ul { list-style: none; padding: 0; margin: 0; }
 
-        /* 챕터 아이템 */
-        .chapter-item {
-            border-bottom: 1px solid rgba(48, 54, 61, 0.3);
-        }
+        .chapter-item { border-bottom: 1px solid rgba(48, 54, 61, 0.3); }
 
         .chapter-title {
             padding: 12px 20px;
@@ -93,18 +84,9 @@
         }
 
         .chapter-title i.fa-folder, 
-        .chapter-title i.fa-folder-open {
-            margin-right: 10px;
-            color: var(--folder-color);
-        }
+        .chapter-title i.fa-folder-open { margin-right: 10px; color: var(--folder-color); }
+        .arrow { font-size: 0.8rem; transition: transform 0.3s; color: #8b949e; }
 
-        .arrow {
-            font-size: 0.8rem;
-            transition: transform 0.3s;
-            color: #8b949e;
-        }
-
-        /* 서브 메뉴 */
         .sub-menu {
             display: none;
             background-color: #0d1117;
@@ -132,7 +114,6 @@
         .chapter-item.active .chapter-title { color: var(--accent-color); background-color: rgba(88, 166, 255, 0.05); }
         .chapter-item.active .arrow { transform: rotate(180deg); color: var(--accent-color); }
 
-        /* --- 2. 우측 메인 화면 (Iframe) --- */
         .main-view {
             flex-grow: 1;
             background-color: var(--bg-color);
@@ -140,11 +121,7 @@
             flex-direction: column;
         }
 
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        iframe { width: 100%; height: 100%; border: none; }
 
         @media (max-width: 768px) {
             body { flex-direction: column; }
@@ -155,7 +132,6 @@
 </head>
 <body>
 
-    <!-- [좌측] 연구소 네비게이터 -->
     <nav class="sidebar">
         <div class="sidebar-header">
             <h2>UFT Research Lab</h2>
@@ -164,43 +140,45 @@
 
         <div class="tree-container">
             <ul>
-                <!-- 0. UFT 소개 (초기 화면: 4D 모델링) -->
+                <!-- 0. UFT 소개 -->
                 <li class="chapter-item active">
                     <div class="chapter-title" onclick="toggleChapter(this)">
-                        <span><i class="fas fa-folder-open"></i> 0. UFT Intro (4D Model)</span>
+                        <span><i class="fas fa-folder-open"></i> 0. UFT Intro</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <!-- 클릭 시 4D 모델링 파일 로드 -->
                         <li><a href="UFT_4D_Model_Intro.html" target="content-frame">0.1 광속전파 4D 시뮬레이션</a></li>
                         <li><a href="UFT_Abstract.html" target="content-frame">0.2 연구의 목적과 배경</a></li>
                     </ul>
                 </li>
 
-                <!-- 1. UFT 개요 -->
+                <!-- 1. UFT 개요 (여기에 문서를 집중시킵니다) -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-folder"></i> 1. UFT 개요 (Overview)</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="UFT_General_Theory_V070.html#constants" target="content-frame">1.1 UFT 근본 5대 상수</a></li>
-                        <li><a href="UFT_General_Theory_V070.html#formulas" target="content-frame">1.2 UFT 우주 절대 5공식</a></li>
-                        <li><a href="UFT_General_Theory_V070.html#fractal" target="content-frame">1.3 우주의 프랙탈 구조</a></li>
+                        <!-- 1.0 개요 전체 -->
+                        <li><a href="UFT_Overview.html" target="content-frame">1.0 UFT 개요 (전체보기)</a></li>
+                        
+                        <!-- [수정] 1.1번 항목 연결 -->
+                        <li><a href="UFT_Constants_and_Laws.html" target="content-frame">1.1 UFT 3대 법칙 및 5대 상수</a></li>
+                        
+                        <!-- 추후 확장될 항목들 (예시) -->
+                        <!-- <li><a href="#" target="content-frame">1.2 UFT 5대 절대 공식</a></li> -->
+                        <!-- <li><a href="#" target="content-frame">1.3 우주의 프랙탈 구조</a></li> -->
                     </ul>
                 </li>
 
-                <!-- 2. UFT 복소전하벡터 -->
+                <!-- 2. UFT 복소전하벡터 (순서 변경됨) -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-folder"></i> 2. UFT 복소전하벡터</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="UFT_Complex_Charge_Interaction_V30.html#section1" target="content-frame">2.1 복소전하벡터의 정의</a></li>
-                        <li><a href="UFT_Complex_Charge_Interaction_V30.html#section2" target="content-frame">2.2 상호작용 및 물리적 함의</a></li>
-                        <li><a href="UFT_Complex_Charge_Interaction_V30.html#section4" target="content-frame">2.3 UFT 연산 규칙</a></li>
-                        <li><a href="UFT_Complex_Charge_Interaction_V30.html#section5" target="content-frame">2.4 극성의 결정 원리</a></li>
+                        <li><a href="UFT_Complex_Charge_Interaction_V30.html" target="content-frame">2.1 정의 및 상호작용 (Ver.30)</a></li>
                     </ul>
                 </li>
 
@@ -211,17 +189,14 @@
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="UFT_General_Theory_V070.html#light" target="content-frame">3.1 Fcp 공전 속도와 c²</a></li>
-                        <li><a href="UFT_Constants_Derivation.html" target="content-frame">3.2 자기장 상수(mu0) 유도</a></li>
+                        <li><a href="UFT_Constants_Derivation.html" target="content-frame">3.1 자기장 상수(mu0) 유도</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- [우측] 메인 화면 (초기값: 4D 모델링) -->
     <div class="main-view">
-        <!-- iframe의 src를 4D 모델 파일로 설정 -->
         <iframe src="UFT_4D_Model_Intro.html" name="content-frame" title="Main Content"></iframe>
     </div>
 
