@@ -3,153 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UFT Research Portal by Bae</title>
-    <!-- 폰트 로드 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
-    <!-- MathJax (수식 렌더링) -->
-    <script>
-        window.MathJax = {
-            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-            svg: { fontCache: 'global' }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>통합장이론(UFT: Unified Field Theory) Research Portal by Bae</title>
+    <!-- 폰트 및 아이콘 로드 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --text-color: #c9d1d9;
-            --accent-color: #58a6ff;
-            --border-color: #30363d;
+            --bg-color: #0d1117;        /* 전체 배경 (아주 어두운 남색) */
+            --sidebar-bg: #161b22;      /* 사이드바 배경 */
+            --text-color: #c9d1d9;      /* 기본 글자색 */
+            --accent-color: #58a6ff;    /* 강조색 (파랑) */
+            --border-color: #30363d;    /* 테두리색 */
+            --hover-bg: #21262d;        /* 마우스 올렸을 때 배경 */
+            --folder-color: #8b949e;    /* 폴더 아이콘 색상 */
         }
 
         body {
+            margin: 0;
+            padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Noto Sans KR', sans-serif;
+            display: flex;
+            height: 100vh; /* 화면 전체 높이 */
+            overflow: hidden; /* 스크롤바 중복 방지 */
+        }
+
+        /* --- 1. 좌측 사이드바 (트리 메뉴 영역) --- */
+        .sidebar {
+            width: 320px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0; /* 화면이 줄어도 찌그러지지 않음 */
+        }
+
+        .sidebar-header {
+            padding: 25px 20px;
+            border-bottom: 1px solid var(--border-color);
+            text-align: left;
+        }
+
+        .sidebar-header h2 {
             margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .portal-container {
-            max-width: 1000px;
-            width: 100%;
-            padding: 100px 20px;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            color: #fff;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #8b949e;
-            font-weight: 300;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(88, 166, 255, 0.1);
-        }
-
-        .card h3 {
             font-size: 1.4rem;
-            color: var(--accent-color);
-            margin: 0 0 15px 0;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            color: #8b949e;
-            line-height: 1.6;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        .card .tag {
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
             color: #fff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        footer {
-            margin-top: auto;
-            padding: 50px;
-            color: #484f58;
+        .sidebar-header p {
+            margin: 5px 0 0 0;
             font-size: 0.85rem;
-            text-align: center;
+            color: #8b949e;
+        }
+
+        /* 트리 메뉴 리스트 */
+        .tree-container {
+            flex-grow: 1;
+            overflow-y: auto; /* 내용 많으면 스크롤 */
+            padding: 10px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* 1단계 메뉴 (챕터) */
+        .chapter-item {
+            border-bottom: 1px solid rgba(48, 54, 61, 0.3);
+        }
+
+        .chapter-title {
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+            color: #e6edf3;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .chapter-title:hover {
+            background-color: var(--hover-bg);
+            color: var(--accent-color);
+        }
+
+        .chapter-title i.fa-folder, 
+        .chapter-title i.fa-folder-open {
+            margin-right: 10px;
+            color: var(--folder-color);
+        }
+
+        .arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+            color: #8b949e;
+        }
+
+        /* 2단계 메뉴 (서브 항목) - 초기엔 숨김 */
+        .sub-menu {
+            display: none;
+            background-color: #0d1117;
+            padding: 5px 0;
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.2);
+        }
+
+        .sub-menu li a {
+            display: block;
+            padding: 8px 20px 8px 52px; /* 들여쓰기 */
+            text-decoration: none;
+            color: #8b949e;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .sub-menu li a:hover {
+            color: #fff;
+            background-color: rgba(88, 166, 255, 0.1);
+            border-left-color: var(--accent-color);
+        }
+
+        /* 활성화 상태 (열림) */
+        .chapter-item.active .sub-menu {
+            display: block;
+        }
+
+        .chapter-item.active .chapter-title {
+            color: var(--accent-color);
+            background-color: rgba(88, 166, 255, 0.05);
+        }
+
+        .chapter-item.active .arrow {
+            transform: rotate(180deg);
+            color: var(--accent-color);
+        }
+
+        /* --- 2. 우측 메인 화면 (Iframe) --- */
+        .main-view {
+            flex-grow: 1;
+            background-color: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* 반응형 (모바일) */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: 40%; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .main-view { height: 60%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="portal-container">
-        <header>
-            <h1>Unified Field Theory (UFT)</h1>
-            <p>The Master Theory of Everything by Bae</p>
-        </header>
-
-        <div class="grid">
-            <!-- 1. 총론 -->
-            <a href="UFT_General_Theory_V070.html" class="card">
-                <h3>UFT General Theory V.070</h3>
-                <p>통합장이론의 근간이 되는 3대 절대 보존 법칙, 5대 근본 상수 및 우주의 절대 공식을 수록한 총론 문서입니다.</p>
-                <div class="tag">Main Document</div>
-            </a>
-
-            <!-- 2. 복소전하 Ver.30 -->
-            <a href="UFT_Complex_Charge_Interaction_V30.html" class="card">
-                <h3>Complex Charge Vector Ver.30</h3>
-                <p>X축 스핀과 yz평면 Vortex의 결합, 복소전하벡터의 정의 및 상호작용에 관한 정밀 수식 전개 모델입니다.</p>
-                <div class="tag">Mathematical Derivation</div>
-            </a>
-
-            <!-- 3. 상수 유도 -->
-            <a href="UFT_Constants_Derivation.html" class="card">
-                <h3>Constants & Dynamism</h3>
-                <p>진공 유전율($\epsilon_0$ ) 과 투자율($\mu_0$ ) 의 동역학적 기원 및 Fcp의 실제 공전 속도 $c^2$ 에 관한 증명입니다.</p>
-                <div class="tag">Physics Insight</div>
-            </a>
+    <!-- [좌측] 연구소 네비게이터 -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h2>UFT Research Lab</h2>
+            <p>Unified Field Theory by Bae</p>
         </div>
 
-        <footer>
-            &copy; 2026 Author Bae. All research data preserved without loss.
-        </footer>
+        <div class="tree-container">
+            <ul>
+                <!-- 0. UFT 소개 -->
+                <li class="chapter-item active"> <!-- active: 처음에 열어둘 항목 -->
+                    <div class="chapter-title" onclick="toggleChapter(this)">
+                        <span><i class="fas fa-folder-open"></i> 0. UFT 소개 (Intro)</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <!-- 현재는 총론 파일로 연결 (추후 별도 파일 생성 시 변경 가능) -->
+                        <li><a href="UFT_General_Theory_V070.html#overview" target="content-frame">0.1 연구의 목적과 배경</a></li>
+                        <li><a href="UFT_General_Theory_V070.html#laws" target="content-frame">0.2 핵심 철학 요약</a></li>
+                    </ul>
+                </li>
+
+                <!-- 1. UFT 개요 -->
+                <li class="chapter-item">
+                    <div class="chapter-title" onclick="toggleChapter(this)">
+                        <span><i class="fas fa-folder"></i> 1. UFT 개요 (Overview)</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a href="UFT_General_Theory_V070.html#constants" target="content-frame">1.1 UFT 근본 5대 상수</a></li>
+                        <li><a href="UFT_General_Theory_V070.html#formulas" target="content-frame">1.2 UFT 우주 절대 5공식</a></li>
+                        <li><a href="UFT_General_Theory_V070.html#fractal" target="content-frame">1.3 우주의 프랙탈 구조</a></li>
+                    </ul>
+                </li>
+
+                <!-- 2. UFT 복소전하벡터 -->
+                <li class="chapter-item">
+                    <div class="chapter-title" onclick="toggleChapter(this)">
+                        <span><i class="fas fa-folder"></i> 2. UFT 복소전하벡터</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a href="UFT_Complex_Charge_Interaction_V30.html#section1" target="content-frame">2.1 복소전하벡터의 정의 및 수식</a></li>
+                        <li><a href="UFT_Complex_Charge_Interaction_V30.html#section2" target="content-frame">2.2 상호작용 수식 및 물리적 함의</a></li>
+                        <li><a href="UFT_Complex_Charge_Interaction_V30.html#section4" target="content-frame">2.3 UFT 연산 규칙</a></li>
+                        <li><a href="UFT_Complex_Charge_Interaction_V30.html#section5" target="content-frame">2.4 극성의 결정 원리 (Spin)</a></li>
+                    </ul>
+                </li>
+
+                <!-- 3. 광속도 c의 기원 및 창출 -->
+                <li class="chapter-item">
+                    <div class="chapter-title" onclick="toggleChapter(this)">
+                        <span><i class="fas fa-folder"></i> 3. 광속도 c의 기원</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <!-- 총론 문서의 6장으로 연결 -->
+                        <li><a href="UFT_General_Theory_V070.html#light" target="content-frame">3.1 Fcp의 공전 속도와 c^2</a></li>
+                        <!-- 상수 유도 문서로 연결 -->
+                        <li><a href="UFT_Constants_Derivation.html" target="content-frame">3.2 자기장 상수(mu0)의 유도</a></li>
+                    </ul>
+                </li>
+
+                <!-- 4. 확장 예시 (나중에 복사해서 쓰세요) -->
+                <li class="chapter-item">
+                    <div class="chapter-title" onclick="toggleChapter(this)">
+                        <span><i class="fas fa-folder"></i> 4. (Future Topics)</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a href="#" target="content-frame">4.1 준비 중...</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- [우측] 메인 화면 (내용 표시) -->
+    <div class="main-view">
+        <!-- 처음에 보여줄 파일 설정 (src="파일명") -->
+        <iframe src="UFT_General_Theory_V070.html" name="content-frame" title="Main Content"></iframe>
     </div>
+
+    <!-- 스크립트: 메뉴 열고 닫기 기능 -->
+    <script>
+        function toggleChapter(element) {
+            // 클릭한 제목의 부모(li)를 찾음
+            const parentLi = element.parentElement;
+            
+            // active 클래스를 토글 (열기/닫기)
+            parentLi.classList.toggle('active');
+
+            // 아이콘 변경 (열리면 folder-open, 닫히면 folder)
+            const icon = element.querySelector('i.fa-folder, i.fa-folder-open');
+            if (parentLi.classList.contains('active')) {
+                icon.classList.remove('fa-folder');
+                icon.classList.add('fa-folder-open');
+            } else {
+                icon.classList.remove('fa-folder-open');
+                icon.classList.add('fa-folder');
+            }
+        }
+    </script>
 
 </body>
 </html>
