@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFT 상수의 기하학적 유도</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+        .container { max-width: 900px; width: 100%; }
+        h1 { color: #fff; border-bottom: 1px solid #30363d; padding-bottom: 20px; margin-bottom: 40px; }
+        h2 { color: #58a6ff; margin-top: 60px; border-left: 5px solid #58a6ff; padding-left: 15px; }
+        h3 { color: #79c0ff; margin-top: 40px; }
+        p { font-weight: 300; text-align: justify; margin-bottom: 20px; }
+        strong { color: #fff; font-weight: 700; }
+        .math-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.1rem;
+            overflow-x: auto;
+        }
+        ul { padding-left: 20px; margin-bottom: 30px; }
+        li { margin-bottom: 10px; }
+        footer { margin-top: 80px; text-align: center; color: #484f58; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>상수의 기하학적 유도 및 동역학적 실체</h1>
+
+        <h2>1. 개요: 상수의 파생성</h2>
+        <p>통합장이론(UFT)은 기존 물리학에서 상수로 취급하던 $\epsilon_0$ (진공 유전율)와 $\mu_0$ (진공 투자율)를 독립적인 상수가 아닌, 근본전하입자(Fcp)의 동역학적 운동에 의해 창발되는 <strong>파생적 매개 변수</strong>로 정의합니다.</p>
+
+        <h2>2. 전기장 상수($\epsilon_0$ )와 자기장 상수($\mu_0$ )의 재해석</h2>
+        <p>기존 물리학의 관계식 $\epsilon_0 \mu_0 = 1/c^2$ 은 UFT 관점에서 다음과 같이 해부됩니다.</p>
+        <div class="math-box">
+            $$ c^2 = \frac{1}{\epsilon_0 \mu_0} = \frac{1}{\epsilon_0} \cdot \frac{1}{\mu_0} $$
+        </div>
+
+        <h3>2.1. $\frac{1}{\epsilon_0}$ : 정적 전하의 공간 점유 포텐셜</h3>
+        <ul>
+            <li><strong>정의:</strong> 정지해 있는 단위 전하(Ucp)가 공간에 형성하는 전기적 장(Field)의 형성 능력 그 자체를 의미합니다.</li>
+            <li><strong>근거:</strong> $k = \frac{1}{4\pi\epsilon_0}$ 에 의해 $\epsilon_0$ 는 전하의 정적 특성입니다.</li>
+        </ul>
+
+        <h3>2.2. $\frac{1}{\mu_0}$ : 동적 자하의 유도 능력</h3>
+        <ul>
+            <li><strong>정의:</strong> 상호 공전하는 두 개의 Fcp 쌍이 만들어내는 자기적 유도 능력을 의미합니다.</li>
+            <li><strong>의미:</strong> 자기는 독립적으로 존재하지 않으며, 전하가 움직일 때 창발되는 파생 현상입니다.</li>
+        </ul>
+
+        <h2>3. Fcp의 실재적 동역학: 공전 속도 $c^2$ 의 발견</h2>
+        <p>위 식에서 $c^2$ 은 단순한 상수의 제곱이 아니라 <strong>Fcp의 실제 공전 접선 속도($m/s$)</strong>를 나타냅니다.</p>
+        <p>두 개의 전하가 <strong>$c^2$ 이라는 초광속</strong>으로 상호 공전할 때, 그 궤도 중앙에 비로소 자기적 실체인 <strong>자하(Jaha)</strong>가 생성됩니다. 즉, <strong>"자기장은 전기가 $c^2$ 으로 달리는 모습"</strong>입니다.</p>
+
+        <h2>4. 기하학적 정합성 유도: $2k$ (궤도 상수) 가설</h2>
+        <p>기존 식 $\frac{1}{\mu_0} = \frac{c^2}{4\pi k}$ 에서 분모의 <strong>4</strong>는 구체(Sphere)를 의미하지만, Fcp는 <strong>원 궤도(Circle)</strong> 운동을 합니다.</p>
+        <p>따라서 쿨롱 상수 $k$ 는 궤도 평면의 힘이 3차원으로 퍼지며 절반($1/2$)으로 희석된 값이라고 보고, <strong>진정한 궤도 상수 $k_{orb} = 2k$</strong> 를 도입하면 기하학적 모순이 해결됩니다.</p>
+        <div class="math-box">
+            $$ \frac{1}{\mu_0} = \frac{c^2}{2 \cdot (2\pi k)} = \frac{c^2}{2\pi (2k)} = \frac{c^2}{2\pi k_{orb}} $$
+        </div>
+
+        <h2>5. 자기장 상수($\mu_0$ )의 최종 유도 공식</h2>
+        <p>자기장 상수는 궤도 기하학과 동역학적 전류 효율의 비로 정의됩니다.</p>
+        <div class="math-box">
+            $$ \mu_0 = \frac{2\pi r \cdot 2Fr}{q^2 c^2} = 2\pi r / \left( \frac{q^2 c^2}{2rF} \right) $$
+        </div>
+        <p><strong>물리적 의미:</strong> $\mu_0$ 는 공전 궤도 둘레($2\pi r$)를 그 궤도를 유지하는 에너지($2rF$) 대비 전하의 회전 능력($q^2 c^2$)으로 나눈 <strong>공간의 동역학적 반응 계수</strong>입니다.</p>
+
+        <footer>
+            &copy; 2026 Bae. Unified Field Theory - All Rights Reserved.
+        </footer>
+    </div>
+</body>
+</html>
