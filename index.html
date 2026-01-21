@@ -3,308 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>통합장이론(Unified Field Theory:UFT) by Bae</title>
-    <!-- 폰트 로드 (Noto Sans KR 적용: 고딕체) -->
+    <title>UFT Research Portal by Bae</title>
+    <!-- 폰트 로드 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- MathJax (수식 렌더링) -->
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
-        /* 기본 스타일 설정 */
-        body {
-            background-color: #0d1117; /* 다크 모드 배경 */
-            color: #c9d1d9; /* 텍스트 색상 */
-            font-family: 'Noto Sans KR', sans-serif; /* 고딕체 적용 */
-            margin: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --border-color: #30363d;
         }
 
-        /* 링크 스타일 */
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        a:hover { color: #58a6ff; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-        /* 좌측 사이드바 (목차) */
-        nav {
-            width: 280px;
-            background-color: #161b22;
-            border-right: 1px solid #30363d;
-            padding: 20px;
-            overflow-y: auto;
-            flex-shrink: 0;
+        .portal-container {
+            max-width: 1000px;
+            width: 100%;
+            padding: 100px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #8b949e;
+            font-weight: 300;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
             display: flex;
             flex-direction: column;
         }
-        nav h1 {
-            font-size: 1.5rem;
-            color: #58a6ff;
-            margin-bottom: 5px;
-            border-bottom: 2px solid #30363d;
-            padding-bottom: 10px;
+
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(88, 166, 255, 0.1);
         }
-        nav .author {
-            font-size: 0.9rem;
-            color: #8b949e;
-            margin-bottom: 30px;
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            margin: 0 0 15px 0;
         }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav li {
-            margin-bottom: 12px;
-        }
-        nav a {
+
+        .card p {
             font-size: 0.95rem;
-            color: #c9d1d9;
-            display: block;
-            padding: 5px 0;
-        }
-        nav a:hover {
-            color: #fff;
-            padding-left: 5px;
-        }
-
-        /* 우측 메인 컨텐츠 */
-        main {
+            color: #8b949e;
+            line-height: 1.6;
+            margin: 0;
             flex-grow: 1;
-            padding: 40px 60px;
-            overflow-y: auto;
-            line-height: 1.8;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
         }
 
-        /* 타이포그래피 */
-        h1.title { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
-        h2 { font-size: 1.8rem; color: #58a6ff; margin-top: 60px; border-bottom: 1px solid #30363d; padding-bottom: 10px; }
-        h3 { font-size: 1.4rem; color: #79c0ff; margin-top: 40px; }
-        p { margin-bottom: 20px; font-weight: 300; } 
-        strong { color: #fff; font-weight: 700; }
-        ul { margin-bottom: 20px; }
-        li { margin-bottom: 10px; }
+        .card .tag {
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-        /* 수식 박스 스타일 */
-        .math-box {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #58a6ff;
-            margin: 20px 0;
-            font-size: 1.1rem;
+        footer {
+            margin-top: auto;
+            padding: 50px;
+            color: #484f58;
+            font-size: 0.85rem;
             text-align: center;
-        }
-
-        /* 반응형 (모바일) */
-        @media (max-width: 768px) {
-            body { flex-direction: column; overflow: auto; }
-            nav { width: 100%; height: auto; border-right: none; border-bottom: 1px solid #30363d; }
-            main { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 사이드바: 목차 -->
-    <nav>
-        <h1>Digital UFT</h1>
-        <div class="author">The New Structure of Physics<br>by Bae</div>
-        <ul>
-            <li><a href="#overview">1. 개요 (Overview)</a></li>
-            <li><a href="#constants">2. 절대 법칙 및 5대 상수</a></li>
-            <li><a href="#formulas">3. UFT 통합 공식</a></li>
-            <li><a href="#particles">4. 근본 요소 및 입자</a></li>
-            <li><a href="#charge">5. 전하의 확장 정의</a></li>
-            <li><a href="#light">6. 광속 및 자기장의 기원</a></li>
-            <li><a href="#ucp">7. 단위전하입자 (Ucp)</a></li>
-            <li><a href="#energy">8. 질량-에너지 변환</a></li>
-            <li><a href="#dynamics">9. 동역학 및 안정성</a></li>
-            <li><a href="#fractal">10. 우주의 프랙탈 구조</a></li>
-            <li><a href="#lba">11. 리미트 기반 대수학 (LBA)</a></li>
-            <li><a href="#reinterp">12. 현상론적 재해석</a></li>
-        </ul>
-    </nav>
+    <div class="portal-container">
+        <header>
+            <h1>Unified Field Theory (UFT)</h1>
+            <p>The Master Theory of Everything by Bae</p>
+        </header>
 
-    <!-- 메인 본문 -->
-    <main>
-        <div class="container">
-            
-            <header style="margin-bottom: 60px; text-align: center;">
-                <h1 class="title">Unified Field Theory (UFT) by Bae</h1>
-                <p style="color: #8b949e;">Author: Bae</p>
-                <div style="margin-top:20px; border:1px solid #58a6ff; display:inline-block; padding:10px 20px; border-radius:20px; color:#58a6ff;">
-                    System Version 0.70
-                </div>
-            </header>
+        <div class="grid">
+            <!-- 1. 총론 -->
+            <a href="UFT_General_Theory_V070.html" class="card">
+                <h3>UFT General Theory V.070</h3>
+                <p>통합장이론의 근간이 되는 3대 절대 보존 법칙, 5대 근본 상수 및 우주의 절대 공식을 수록한 총론 문서입니다.</p>
+                <div class="tag">Main Document</div>
+            </a>
 
-            <!-- 1. 개요 -->
-            <section id="overview">
-                <h2>1. 개요 (Overview)</h2>
-                <p>본 통합장 이론(Unified Field Theory)은 미시 세계와 거시 우주 세계의 물리적인 구조 및 현상을 오직 전자기력과 운동력만로 해석하는 일종의 통합장(Unified Field) 이론이다. 우주의 근본 요소를 <strong>근본전하요소(FCE)</strong>와 그 운동으로 규정하고, 이 FCE들의 상호작용으로 인한 전기장과 자기장의 상호 유도를 통해 융합되는 <strong>근본전하입자(Fcp)</strong>, 단위전하입자(Ucp), 전자(Ep), 및 원자, 다원자의 단계를 거쳐 거시 세계를 모델링한다.</p>
-                <p>특히, 이 이론은 현대물리학에서 사용하는 용어 전하(Electric Charge)를 확대 정의하여 복소 전하 벡터로 정의하고, 이 복소 전하 벡터는 전기적인 성질인 국소전기장을 발산하는 동시에 <strong>자하(점자속:Magnetic charge)</strong> 즉, 자기적인 성질의 국소자기장도 형성하는 전기적 성질과 자기적 성질의 복합 벡터로 정의하며, 이 원리를 통해 미시 세계 뿐만 아니라 거시 세계 및 천체 운동 원리까지 확장되는 프랙탈 구조를 갖는다.</p>
-                <p>또한, 물질의 탄생 과정은 FCE의 <strong>극한 속도(Concept of $c^4$ )</strong> 운동이 Fcp의 <strong>초광속 공전(Concept of $c^2$ )</strong>으로 결합되고, 이것이 다시 Ucp(전자 등)의 <strong>광속($c$ )</strong> 궤도 운동으로 수렴되며 에너지가 응축되는 과정으로 해석한다.</p>
-            </section>
+            <!-- 2. 복소전하 Ver.30 -->
+            <a href="UFT_Complex_Charge_Interaction_V30.html" class="card">
+                <h3>Complex Charge Vector Ver.30</h3>
+                <p>X축 스핀과 yz평면 Vortex의 결합, 복소전하벡터의 정의 및 상호작용에 관한 정밀 수식 전개 모델입니다.</p>
+                <div class="tag">Mathematical Derivation</div>
+            </a>
 
-            <!-- 2. 상수 -->
-            <section id="constants">
-                <h2>2. UFT의 3대 절대 보존 법칙 및 5대 근본 상수</h2>
-                <p>UFT는 아래의 5가지 근본 상수만을 인정하며, 이 외에 현대 물리 이론들의 다른 상수들은 절대 사용을 금지한다.</p>
-                <div class="math-box">
-                    $$ \pi, \quad k, \quad c, \quad Q_e, \quad h $$
-                </div>
-                <ul>
-                    <li><strong>원주율 상수 ($\pi$ ):</strong> 공간의 구조와 회전 운동을 규정하는 절대적인 기하학적 비율.</li>
-                    <li><strong>쿨롱 상수 ($k$ ):</strong> 전하 간 상호작용의 세기를 결정하는 힘의 효율 상수이자 매질의 특성값.</li>
-                    <li><strong>광속도 상수 ($c$ ):</strong> 단위전하입자(Ucp)가 공간 상에서 가질 수 있는 이동 속도의 한계이자, 장(Field)의 전파 속도.</li>
-                    <li><strong>전하량 단위 ($Q_e$ ):</strong> 단위전하입자(Ucp)의 기본 전하량. 우주를 구성하는 전자기적 에너지의 기본 단위.</li>
-                    <li><strong>플랑크 상수 ($h$ ):</strong> 에너지가 공간 상에서 회전 운동(진동)할 때의 각운동량 비례 계수이자 에너지의 최소 단위.</li>
-                </ul>
-            </section>
-
-            <!-- 3. 공식 -->
-            <section id="formulas">
-                <h2>3. UFT 통합 공식: 우주의 절대 공식 5가지</h2>
-                <p>본 장에서는 통합장이론(UFT) 의 물리적 현상을 기술하는 데 있어 반드시 사용되어야 하는 5가지 절대 공식을 정의한다. 이 공식들은 이후 전개될 모든 에너지 및 힘의 해석에 대한 근본적인 수학적 도구가 된다. 특히 UFT의 모든 물리량($Q, E, m, F$ )은 스칼라가 아닌 방향성을 가진 벡터량(Vector Quantity) 임을 대전제로 한다.</p>
-
-                <h3>3.1. 물리량의 벡터성 정의 (Vector Nature)</h3>
-                <p>UFT에서 벡터와 벡터의 곱($\cdot$ )은 반드시 벡터(Vector) 이다. 상호작용하는 물리량들의 고유한 방향성이 보존된다.</p>
-                <div style="background: rgba(255,0,0,0.1); padding: 15px; border-left: 4px solid #ff7b72; margin: 15px 0;">
-                    <strong>저자의 수학적 비판: 기존 대수학의 오류 지적</strong><br>
-                    현대 수학은 내적의 결과를 스칼라로 정의함으로써 물리적 상호작용 후 방향성이 소멸하는 오류를 범하고 있다. UFT는 "방향이 보존되는 벡터 곱"을 표준으로 채택한다.
-                </div>
-                
-                <div class="math-box">
-                    $$ \text{제1공식: } \vec{E}_{kinetic} = \frac{1}{2} (mv^2) \vec{i}_x $$
-                    $$ \text{제2공식: } \vec{E}_{total} = \vec{m}_{dynamic} c^2 $$
-                    $$ \text{제3공식: } \vec{m}_{dynamic} = \vec{m}_{static} + \frac{\vec{E}_{kinetic}}{c^2} $$
-                    $$ \text{제4공식: } \vec{Q}_{3_{stable}}(t) = {\vec{Q}_1(t) \oplus \vec{Q}_2(t)} $$
-                    $$ \text{제5공식: } \vec{E} = h \vec{\nu} = h \frac{c}{2\pi r_0} \vec{n} $$
-                </div>
-
-                <h3>3.7. 상수의 대통합 (Grand Unification of Constants)</h3>
-                <div class="math-box">
-                    $$ h \nu = \frac{k Q_e^2}{\alpha r_0} $$
-                </div>
-                <p>양자 에너지($h\nu$ )와 전기적 위치 에너지는 미세구조상수($\alpha$ )를 통해 하나의 체계로 통합된다.</p>
-            </section>
-
-            <!-- 4. 입자 -->
-            <section id="particles">
-                <h2>4. 근본 요소 및 입자 (Fundamental Elements and Particles)</h2>
-                <h3>4.1. 근본전하요소 (FCE, Fundamental Charge Element)</h3>
-                <ul>
-                    <li><strong>정의:</strong> 질량이 0이며, 전하의 근원이 되는 가장 기초적인 요소. ($\mathbf{FCE}{+}, \mathbf{FCE}{-}$)</li>
-                    <li><strong>특징:</strong> $C_f$ 속도로 운동한다.</li>
-                </ul>
-                
-                <h3>4.2. 근본전하입자 (Fcp, Fundamental Charge Particle)</h3>
-                <ul>
-                    <li><strong>정의:</strong> $\text{FCE}$ 쌍이 초광속($c_{ff}$ )으로 상호 공전하는 시스템.</li>
-                    <li><strong>창발:</strong> 이 공전 운동으로 인해 <strong>전하($\pm 1Q_e$ )</strong>와 <strong>질량($m_{Fcp}$ )</strong>이 창발한다.</li>
-                </ul>
-            </section>
-
-            <!-- 5. 전하 -->
-            <section id="charge">
-                <h2>5. 전하 $\vec{Q}$ 의 확장 정의: 표준 모델 (Standard Model of Charge)</h2>
-                <h3>5.1. 복소 전하 벡터 (Complex Charge Vector)</h3>
-                <p>전하를 단순한 스칼라량이 아닌, 전기적 성질(실수부/국소전기장)과 자기적 성질(허수부/국소자속 $\psi$ )이 공존하는 <strong>복소 전하 벡터(Complex Charge Vector)</strong>로 정의한다.</p>
-
-                <h3>5.2. 전하와 자하의 정의 및 교대</h3>
-                <ul>
-                    <li><strong>자하($\mathbf{Jaha}$ ):</strong> Fcp 중심의 방향성을 가진 동적 실체.</li>
-                    <li><strong>시간 교대 (Time Alternation):</strong> 전하와 자하는 $c_{ff}$ 주기로 상호 교대하며 존재한다. 이는 관측상 영속적인 전하로 나타난다.</li>
-                </ul>
-
-                <h3>5.3. 정적 상태의 메커니즘</h3>
-                <p><strong>동역학적 정지:</strong> 거시적으로 정지해 있어도 내부적으로는 광속 공전이 지속되므로 전하와 질량은 불변한다.</p>
-            </section>
-
-            <!-- 6. 광속/자기장 기원 -->
-            <section id="light">
-                <h2>6. 광속의 창발 및 자기장의 기원</h2>
-                <h3>6.1. 광속의 창발 및 자기장의 동역학적 기원</h3>
-                <p>UFT는 광속($c$ )을 단순 관측값이 아닌 Fcp 내부의 역동적인 공전 운동에 의한 결과로 규명한다.</p>
-                
-                <div class="math-box">
-                    $$ \epsilon_0 \mu_0 = \frac{1}{c^2} \quad \Rightarrow \quad c^2 = \frac{1}{\epsilon_0 \mu_0} = \frac{1}{\epsilon_0} \cdot \frac{1}{\mu_0} $$
-                </div>
-                <p>UFT 관점에서 위 식은 <strong>Fcp의 실제 공전 접선 속도가 $c^2$ ($m/s$)</strong> 임을 의미한다. 즉, 전하가 $c^2$ 의 초광속으로 상호 공전할 때 그 궤도 중심에 자기장(자하)이 생성된다.</p>
-
-                <p><strong>자기장 상수의 정체 유도:</strong></p>
-                <div class="math-box">
-                    $$ \mu_0 = \frac{2\pi r \cdot 2Fr}{q^2 c^2} = 2\pi r / \left( \frac{q^2 c^2}{2rF} \right) $$
-                </div>
-                <p>자기장 상수($\mu_0$ )는 공전 궤도 둘레($2\pi r$ )를 궤도 유지 에너지 대비 전하의 회전 능력인 '동역학적 전류 효율'로 나눈 기하학적 결과값이다.</p>
-
-                <h3>6.2. 관성의 근원</h3>
-                <p>관성은 입자가 이동할 때 발생하는 전하와 자하 간의 미세한 시간적/공간적 지연($ds$ )에 의한 추진력의 결과이다.</p>
-            </section>
-
-            <!-- 7. 단위전하입자 (Ucp) -->
-            <section id="ucp">
-                <h2>7. 단위전하입자 (Ucp) 및 전자 (Ep)</h2>
-                <p><strong>정의:</strong> 단위전하입자(Ucp)는 다수의 근본전하입자(Fcp)가 특정 에너지 레벨에서 융합된 궤도 시스템이다. 현대 물리학의 전자가 대표적인 예이다.</p>
-                <ul>
-                    <li><strong>내부 구조:</strong> 전자는 단순한 점 입자가 아니라, 다수의 Fcp가 층층이 융합된 복합적인 기하학적 시스템이다.</li>
-                    <li><strong>특성:</strong> 내부 공전 동역학에 의해 전체 시스템의 전하량($\pm 1Q_e$ )과 질량이 최종 결정된다.</li>
-                </ul>
-            </section>
-
-            <!-- 8. 질량-에너지 변환 -->
-            <section id="energy">
-                <h2>8. 질량-에너지 변환 (Mass-Energy Conversion)</h2>
-                <p>UFT에서 질량은 별도의 물질이 아니라 전자기적 에너지의 응축된 형태이다.</p>
-                <ul>
-                    <li><strong>원리:</strong> 동적 질량($m_{dynamic}$ )은 운동 에너지의 축적이며, 입자가 붕괴되거나 전자기적 평형이 깨질 때 다시 빛(에너지)으로 환원된다.</li>
-                    <li><strong>마스터 방정식:</strong> $\vec{E}_{total} = \vec{m}_{dynamic} c^2$ 를 따르며, 이는 에너지와 질량이 광속($c$ )을 매개로 하는 동일한 실체임을 증명한다.</li>
-                </ul>
-            </section>
-
-            <!-- 9. 단위전하입자(Ucp)의 동역학 및 안정성 -->
-            <section id="dynamics">
-                <h2>9. 단위전하입자(Ucp)의 동역학 및 안정성</h2>
-                <ul>
-                    <li><strong>전하 결정:</strong> 외부 관측 속도와 무관하게, Ucp 시스템 최외곽 Fcp의 공전 특성에 의해 외부로 나타나는 유효 전하량이 결정된다.</li>
-                    <li><strong>궤도 안정성:</strong> Ucp는 특정 안정화 속도($v_{stable}$ )에서 공전할 때 구조적 붕괴 없이 동적 평형을 유지한다. 이는 양자화된 에너지 레벨의 기원이 된다.</li>
-                </ul>
-            </section>
-
-            <!-- 10. 우주의 프랙탈 구조 -->
-            <section id="fractal">
-                <h2>10. 우주의 프랙탈 구조 (Fractal Structure)</h2>
-                <p>우주는 미시 세계(FCE)에서 거시 세계(천체)에 이르기까지 동일한 동역학적 메커니즘을 공유하는 자기 유사성을 가진다.</p>
-                <ul>
-                    <li><strong>동역학적 일치:</strong> 미시 입자 내부의 초광속 공전 원리는 거시 우주의 태양계, 은하 회전 원리와 프랙탈적인 유사 구조를 가진다.</li>
-                    <li><strong>계층 구조:</strong> Level 0(FCE) → Level 1(Fcp) → Level 2(Ucp/전자) → Level 3(수소 원자) → Level 4(천체/거시 물질)로 확장된다.</li>
-                </ul>
-            </section>
-
-            <!-- 11. 리미트 기반 대수학 (LBA) -->
-            <section id="lba">
-                <h2>11. 리미트 기반 대수학 (LBA)</h2>
-                <p>LBA는 물리적 실재를 수치적으로 반영하기 위해 도입된 UFT 전용 연산 체계이다.</p>
-                <ul>
-                    <li><strong>부정형 해결:</strong> $0/0$ 이나 $\infty/\infty$ 같은 수학적 특이점을 '에너지의 수렴'과 '시스템의 균형' 관점에서 물리적 유한값으로 산출한다.</li>
-                    <li><strong>연산 공리:</strong> 모든 물리적 연산은 최소 기저($\delta$ )를 바탕으로 하며, 완전한 무(Nothingness)를 배격한다.</li>
-                </ul>
-            </section>
-
-            <!-- 12. 현상론적 재해석 -->
-            <section id="reinterp">
-                <h2>12. 현상론적 재해석</h2>
-                <p><strong>미세구조상수($\alpha$ )와 화학적 결합의 원천:</strong> 미세구조상수($\alpha \approx 1/137$)는 전자기적 상호작용의 구조적 기어비(Gear Ratio)로 해석한다. 수소 원자의 전기적 중성은 완벽한 0이 아니며, 약 $1/137$ 수준의 미세한 <strong>'잔여 유효 전하(Residual Effective Charge)'</strong>가 존재한다. UFT는 이를 분자 결합, 이온 결합, 공유 결합 등 화학적 결합을 가능케 하는 근원적인 디지털 접착제(Digital Glue)로 재해석한다.</p>
-            </section>
-
-            <footer style="margin-top: 100px; padding-top: 20px; border-top: 1px solid #30363d; color: #8b949e; font-size: 0.8rem; text-align: center;">
-                &copy; 2026 Bae. All Rights Reserved. UFT-BAE-THEORY.COM
-            </footer>
-
+            <!-- 3. 상수 유도 -->
+            <a href="UFT_Constants_Derivation.html" class="card">
+                <h3>Constants & Dynamism</h3>
+                <p>진공 유전율($\epsilon_0$ ) 과 투자율($\mu_0$ ) 의 동역학적 기원 및 Fcp의 실제 공전 속도 $c^2$ 에 관한 증명입니다.</p>
+                <div class="tag">Physics Insight</div>
+            </a>
         </div>
-    </main>
+
+        <footer>
+            &copy; 2026 Author Bae. All research data preserved without loss.
+        </footer>
+    </div>
 
 </body>
 </html>
