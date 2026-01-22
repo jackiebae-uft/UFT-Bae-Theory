@@ -11,7 +11,7 @@
     <meta name="description" content="통합장이론(UFT: Unified Field Theory) 공식 연구 포털 by Bae. 3대 절대 보존 법칙, 5대 근본 상수, 복소전하벡터, 광속의 기원, Fcp/Ucp 모델링을 통해 현대 물리학의 모순을 해결하고 우주를 통합합니다.">
     <meta name="keywords" content="통합장이론, UFT, Unified Field Theory, Bae Theory, 복소전하벡터, 5대근본상수, 광속의기원, 자기장의기원, Fcp, Ucp, 새로운물리학, Grand Unified Theory, TOE, 양자중력, 디지털접착제">
     <meta name="author" content="Bae">
-    <meta name="robots" content="index, follow"> <!-- AI에게 이 페이지를 읽고 링크를 따라가라고 지시 -->
+    <meta name="robots" content="index, follow">
 
     <!-- [3. SNS 공유 시 미리보기 설정] -->
     <meta property="og:title" content="통합장이론(UFT) Research Portal - by Bae">
@@ -105,7 +105,8 @@
         }
 
         .chapter-title i.fa-folder, 
-        .chapter-title i.fa-folder-open { margin-right: 10px; color: var(--folder-color); }
+        .chapter-title i.fa-folder-open, 
+        .chapter-title i.fa-sticky-note { margin-right: 10px; color: var(--folder-color); }
         .arrow { font-size: 0.8rem; transition: transform 0.3s; color: #8b949e; }
 
         /* 서브 메뉴 */
@@ -171,23 +172,22 @@
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <!-- AI는 href를 읽고, 사람은 onclick으로 작동 -->
-                        <li><a href="UFT_4D_Model_Intro.html" onclick="loadPage(event, this.href)">0.1 광속전파 4D 시뮬레이션</a></li>
-                        <li><a href="UFT_Abstract.html" onclick="loadPage(event, this.href)">0.2 연구의 목적과 배경</a></li>
+                        <li><a href="UFT_4D_Model_Intro.html" onclick="loadPage(event, this.href)">0.1 UFT 광속전파 4D 시뮬레이션</a></li>
+                        <li><a href="UFT_Abstract.html" onclick="loadPage(event, this.href)">0.2 UFT 연구의 목적과 배경</a></li>
                     </ul>
                 </li>
 
                 <!-- 1. UFT 개요 -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
-                        <span><i class="fas fa-folder"></i> 1. 통합장이론(UFT) 개요 (Overview)</span>
+                        <span><i class="fas fa-folder"></i> 1. 통합장이론(UFT) 개요</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="UFT_Overview.html" onclick="loadPage(event, this.href)">1.0 통합장이론 개요 전체보기</a></li>
+                        <li><a href="UFT_Overview.html" onclick="loadPage(event, this.href)">1.0 통합장이론 개요 전체보기 (Full)</a></li>
                         <li><a href="UFT_Constants_and_Laws.html" onclick="loadPage(event, this.href)">1.1 UFT 3대 법칙 및 5대 상수</a></li>
                         <li><a href="UFT_Universal_Formulas.html" onclick="loadPage(event, this.href)">1.3 UFT 우주 절대 5공식</a></li>
-                        <li><a href="UFT_Fundamental_Elements.html" onclick="loadPage(event, this.href)">1.4 근본 전하요소 etc</a></li>
+                        <li><a href="UFT_Fundamental_Elements.html" onclick="loadPage(event, this.href)">1.4 UFT 근본 전하요소 etc</a></li>
                     </ul>
                 </li>
 
@@ -198,7 +198,6 @@
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <!-- '복소전하' 키워드 강조 -->
                         <li><a href="UFT_Complex_Charge_Interaction_V30.html" onclick="loadPage(event, this.href)">2.1 복소전하의 정의 및 상호작용 (Ver.30)</a></li>
                     </ul>
                 </li>
@@ -213,49 +212,61 @@
                         <li><a href="UFT_Constants_Derivation.html" onclick="loadPage(event, this.href)">3.1 자기장 상수(mu0) 유도</a></li>
                     </ul>
                 </li>
+
+                <!-- [신규] 99. 연구 노트 (Drafts) -->
+                <li class="chapter-item">
+                    <div class="chapter-title" onclick="toggleChapter(this)">
+                        <span><i class="fas fa-sticky-note"></i> 99. 연구 노트 (Drafts)</span>
+                        <i class="fas fa-chevron-down arrow"></i>
+                    </div>
+                    <ul class="sub-menu">
+                        <li><a href="UFT_Research_Note_Template.html" onclick="loadPage(event, this.href)">99.000 연구 노트 양식 (Template)</a></li>
+                        <li><a href="UFT_Research_Note_101.html" onclick="loadPage(event, this.href)">99.101 연구 노트 (Draft)</a></li>
+                        <li><a href="UFT_Research_Note_102.html" onclick="loadPage(event, this.href)">99.102 연구 노트 (Draft)</a></li>
+                        <li><a href="UFT_Research_Note_103.html" onclick="loadPage(event, this.href)">99.103 연구 노트 (Draft)</a></li>
+                        <li><a href="UFT_Research_Note_104.html" onclick="loadPage(event, this.href)">99.104 연구 노트 (Draft)</a></li>
+                        <li><a href="UFT_Research_Note_105.html" onclick="loadPage(event, this.href)">99.105 연구 노트 (Draft)</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
     </nav>
 
     <div class="main-view">
-        <!-- 초기 로딩 시 4D 모델링 표시 -->
         <iframe id="content-frame" src="UFT_4D_Model_Intro.html" title="Main Content"></iframe>
     </div>
 
     <script>
-        // 1. 페이지 로드 함수 (AI는 href로 수집, 사람은 iframe으로 열람)
         function loadPage(event, pageUrl) {
-            // 브라우저의 기본 이동 막기 (사람용)
             event.preventDefault(); 
-            
             const frame = document.getElementById('content-frame');
             if (frame) {
                 frame.src = pageUrl;
-                // 주소창에 #page=파일명 기록 (새로고침 시 복원용)
                 const filename = pageUrl.split('/').pop(); 
                 window.location.hash = 'page=' + filename;
             }
         }
 
-        // 2. 챕터 열고 닫기 함수
         function toggleChapter(element) {
             const parentLi = element.parentElement;
             parentLi.classList.toggle('active');
-            const icon = element.querySelector('i.fa-folder, i.fa-folder-open');
-            if (parentLi.classList.contains('active')) {
-                icon.classList.remove('fa-folder');
-                icon.classList.add('fa-folder-open');
-            } else {
-                icon.classList.remove('fa-folder-open');
-                icon.classList.add('fa-folder');
+            const icon = element.querySelector('i.fa-folder, i.fa-folder-open, i.fa-sticky-note');
+            
+            if (!icon.classList.contains('fa-sticky-note')) {
+                if (parentLi.classList.contains('active')) {
+                    icon.classList.remove('fa-folder');
+                    icon.classList.add('fa-folder-open');
+                } else {
+                    icon.classList.remove('fa-folder-open');
+                    icon.classList.add('fa-folder');
+                }
             }
         }
 
-        // 3. 새로고침 시 페이지 복원 기능
         window.onload = function() {
             const hash = window.location.hash;
             if (hash && hash.includes('page=')) {
-                // #page= 뒷부분의 파일명을 가져옴
                 const pageUrl = hash.split('page=')[1];
                 if (pageUrl) {
                     const frame = document.getElementById('content-frame');
