@@ -96,7 +96,7 @@
 
         <div class="tree-container">
             <ul>
-                <!-- 0. 소개 폴더 -->
+                <!-- 0_소개 폴더 -->
                 <li class="chapter-item active">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-folder-open"></i> 0. UFT 소개</span>
@@ -108,7 +108,7 @@
                     </ul>
                 </li>
 
-                <!-- 1. 개요 폴더 -->
+                <!-- 1_개요 폴더 -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-folder"></i> 1. UFT 개요</span>
@@ -122,7 +122,7 @@
                     </ul>
                 </li>
 
-                <!-- 2. 복소전하 폴더 -->
+                <!-- 2_복소전하 폴더 -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-folder"></i> 2. 복소전하벡터</span>
@@ -133,7 +133,7 @@
                     </ul>
                 </li>
 
-                <!-- 3. 입자물리 폴더 -->
+                <!-- 3_입자물리 폴더 -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-atom"></i> 3. 입자물리학</span>
@@ -145,7 +145,7 @@
                     </ul>
                 </li>
 
-                <!-- 4. 에너지물리 폴더 -->
+                <!-- 4_에너지물리 폴더 -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-bolt"></i> 4. 에너지물리학</span>
@@ -156,7 +156,7 @@
                     </ul>
                 </li>
 
-                <!-- 5. 천체물리 폴더 -->
+                <!-- 5_천체물리 폴더 -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-globe-americas"></i> 5. 천체물리학</span>
@@ -168,22 +168,22 @@
                     </ul>
                 </li>
 
-                <!-- 99. 연구노트 폴더 (스냅샷 기반 한글 경로 동기화) -->
+                <!-- 99_연구노트 폴더 -->
                 <li class="chapter-item">
                     <div class="chapter-title" onclick="toggleChapter(this)">
                         <span><i class="fas fa-sticky-note"></i> 99. 연구 노트</span>
                         <i class="fas fa-chevron-down arrow"></i>
                     </div>
                     <ul class="sub-menu">
-                        <li><a href="99_연구노트/UFT_연구노트_100.html" onclick="loadPage(event, this.href)">99.100_html 연구 노트 (Draft)</a></li>
+                        <li><a href="99_연구노트/UFT_연구노트_100.html" onclick="loadPage(event, this.href)">99.100 연구 노트 (Draft)</a></li>
                         <li><a href="99_연구노트/UFT_연구노트_101.html" onclick="loadPage(event, this.href)">99.101 연구 노트 (Draft)</a></li>
                         <li><a href="99_연구노트/UFT_연구노트_102.html" onclick="loadPage(event, this.href)">99.102 연구 노트 (Draft)</a></li>
                         <li><a href="99_연구노트/UFT_연구노트_103.html" onclick="loadPage(event, this.href)">99.103 연구 노트 (Draft)</a></li>
                         <li><a href="99_연구노트/UFT_연구노트_104.html" onclick="loadPage(event, this.href)">99.104 연구 노트 (Draft)</a></li>
                         <li><a href="99_연구노트/UFT_연구노트_105.html" onclick="loadPage(event, this.href)">99.105 연구 노트 (Draft)</a></li>
-                        <li><a href="99_연구노트/UFT_연구노트_T00.md" onclick="loadPage(event, this.href)">99.T00_md 연구 노트 (Draft)</a></li>
-                        <li><a href="99_연구노트/UFT_연구노트_T01.md" onclick="loadPage(event, this.href)">99.T01_md 연구 노트 (Draft)</a></li>
-                        <li><a href="99_연구노트/UFT_연구노트_T02.md" onclick="loadPage(event, this.href)">99.T02_md 연구 노트 (Draft)</a></li>
+                        <li><a href="99_연구노트/UFT_연구노트_T00.md" onclick="loadPage(event, this.href)">99.T00 연구 노트 (.md)</a></li>
+                        <li><a href="99_연구노트/UFT_연구노트_T01.md" onclick="loadPage(event, this.href)">99.T01 연구 노트 (.md)</a></li>
+                        <li><a href="99_연구노트/UFT_연구노트_T02.md" onclick="loadPage(event, this.href)">99.T02 연구 노트 (.md)</a></li>
                     </ul>
                 </li>
             </ul>
@@ -191,7 +191,6 @@
     </nav>
 
     <div class="main-view">
-        <!-- 초기 로드 화면도 한글 경로로 수정 -->
         <iframe id="content-frame" src="0_소개/UFT_4D_모델_소개.html" title="Main Content"></iframe>
     </div>
 
@@ -201,7 +200,8 @@
             const frame = document.getElementById('content-frame');
             if (frame) {
                 frame.src = pageUrl;
-                window.location.hash = 'page=' + pageUrl;
+                // 한글 경로 인코딩 처리하여 주소창 유지
+                window.location.hash = 'page=' + encodeURIComponent(pageUrl);
             }
         }
 
@@ -221,7 +221,7 @@
         window.onload = function() {
             const hash = window.location.hash;
             if (hash && hash.includes('page=')) {
-                const pageUrl = hash.split('page=')[1];
+                const pageUrl = decodeURIComponent(hash.split('page=')[1]);
                 if (pageUrl) {
                     const frame = document.getElementById('content-frame');
                     if(frame) frame.src = pageUrl;
