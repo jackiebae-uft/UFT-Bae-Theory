@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합장이론 UFT 전자기파 광속전파 4D 모델링</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #010409; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+        canvas { display: block; outline: none; }
+        
+        #main-title {
+            position: absolute;
+            top: 30px;
+            width: 100%;
+            text-align: center;
+            z-index: 110;
+            pointer-events: none;
+        }
+        #main-title h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 0.3rem;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.6), 0 0 40px rgba(0, 0, 0, 1);
+        }
+
+        #ui-overlay {
+            position: absolute; 
+            bottom: 25px; 
+            right: 25px;
+            background: rgba(13, 17, 23, 0.95); padding: 20px; border-radius: 16px;
+            width: 340px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.2); backdrop-filter: blur(12px);
+            z-index: 100;
+        }
+
+        #detail-view-container {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 300px;
+            height: 300px;
+            background: rgba(13, 17, 23, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 90;
+        }
+        
+        #detail-interaction-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 92;
+            cursor: move;
+        }
+
+        #detail-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(56, 189, 248, 0.7);
+            color: white;
+            font-size: 10px;
+            font-weight: 900;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 95;
+            pointer-events: none;
+        }
+
+        #btn-detail-reset {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(31, 41, 55, 0.6);
+            color: #38bdf8;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(56, 189, 248, 0.5);
+            z-index: 95;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        #btn-detail-reset:hover {
+            background: rgba(56, 189, 248, 0.8);
+            color: white;
+        }
+
+        .field-bar-container { width: 100%; height: 6px; background: #161b22; border-radius: 3px; overflow: hidden; margin: 8px 0; }
+        #bar-e { height: 100%; background: #38bdf8; transition: width 0.1s; box-shadow: 0 0 10px #38bdf8; }
+        #bar-m { height: 100%; background: #f43f5e; transition: width 0.1s; box-shadow: 0 0 10px #f43f5e; }
+        
+        .ctrl-group { display: grid; grid-template-columns: 1fr 1.2fr 1fr; gap: 8px; margin-top: 15px; }
+        button { 
+            padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer; 
+            transition: all 0.2s ease; border: none; text-transform: uppercase; font-size: 11px;
+        }
+        .btn-blue { background: #1f2937; color: #38bdf8; border: 1px solid #0ea5e9; }
+        .btn-blue:hover:not(:disabled) { background: #0ea5e9; color: white; }
+        .btn-blue:disabled { opacity: 0.2; cursor: not-allowed; }
+        #btn-pause { background: #374151; color: white; }
+        #btn-pause.active { background: #e11d48; color: white; box-shadow: 0 0 15px rgba(225, 29, 72, 0.5); }
+        
+        .status-box { background: rgba(0,0,0,0.3); padding: 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+        .axis-marker {
+            position: absolute; pointer-events: none; color: #4b5563; font-size: 10px; font-weight: 800;
+            text-shadow: 0 0 5px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+    <div id="main-title">
+        <h1 class="italic">전자기파 광속전파 4D 모델링</h1>
+    </div>
+
+    <!-- 좌상단 상세 관찰 뷰 -->
+    <div id="detail-view-container">
+        <div id="detail-label">C² Engine Detail View</div>
+        <div id="btn-detail-reset" onclick="resetDetailCamera()">RESET VIEW</div>
+        <div id="detail-interaction-layer"></div>
+    </div>
+
+    <!-- 우하단 제어판 -->
+    <div id="ui-overlay">
+        <h1 class="text-sky-400 text-sm font-black mb-4 border-b border-slate-800 pb-2 text-center tracking-widest uppercase italic">UFT: EM Wave Control Panel</h1>
+        
+        <div class="space-y-4">
+            <div class="text-[10px]">
+                <div class="flex justify-between font-bold text-sky-400 mb-1">
+                    <span>추진 수용 전하량 (E)</span>
+                    <span id="txt-e">50%</span>
+                </div>
+                <div class="field-bar-container"><div id="bar-e" style="width: 50%;"></div></div>
+            </div>
+            <div class="text-[10px]">
+                <div class="flex justify-between font-bold text-rose-500 mb-1">
+                    <span>자기장 엔진 출력 (M)</span>
+                    <span id="txt-m">50%</span>
+                </div>
+                <div class="field-bar-container"><div id="bar-m" style="width: 50%;"></div></div>
+            </div>
+        </div>
+
+        <div class="bg-slate-900/50 p-3 rounded-xl border border-slate-800 mt-4">
+            <div class="text-[9px] font-bold text-slate-500 uppercase mb-2">기어 설정 (Transmission)</div>
+            <div class="bg-black/40 p-2 rounded-lg text-center mb-3">
+                <div id="txt-step-name" class="text-sky-400 font-black text-xs uppercase">Neutral: Stationary</div>
+                <div id="txt-speed-desc" class="text-[9px] text-slate-500 mt-1 italic leading-tight">엔진 상시 가동 ($c^2$) | 전하 등방성</div>
+            </div>
+            <div class="ctrl-group">
+                <button id="btn-prev" class="btn-blue">Lower</button>
+                <button id="btn-pause" class="active">Pause</button>
+                <button id="btn-next" class="btn-blue">Higher</button>
+            </div>
+        </div>
+
+        <div class="mt-4 flex gap-2">
+            <div class="status-box flex-1 text-center">
+                <div class="text-[8px] text-slate-500 uppercase">전파 결과 속도 (c)</div>
+                <div id="txt-x-pos" class="text-xs font-mono text-white">0.00</div>
+            </div>
+            <button id="btn-reset" class="status-box flex-1 text-[10px] uppercase font-bold text-sky-500 hover:bg-sky-500/10 transition-colors">↺ RESET</button>
+        </div>
+    </div>
+
+    <div id="axis-labels"></div>
+
+    <script>
+        /**
+         * UFT 전자기파 자가 추진 모델링
+         * 핵심 논리: 
+         * 1. 자기장 엔진은 항상 동일한 힘으로 밀어냄.
+         * 2. 추진 효율은 전기장(전하량)의 유효 크기에 비례함.
+         * 3. 광속(c) 도달 시 전면 전하량 0 -> 추진 불능 -> 등속 평형.
+         */
+        let scene, camera, followCamera, renderer, controls, detailControls;
+        let eGroup, mGroup, particleFrame, spiralLine, localLight;
+        
+        const LOOP_START = -2500.0;
+        const LOOP_END = 2500.0;
+        const DIR_VEC = new THREE.Vector3(1, 0.42, -0.38).normalize();
+        
+        let currentDist = LOOP_START; 
+        let isMoving = true; 
+        let fieldTime = 0; 
+        
+        const INITIAL_CAM_POS = { x: -400, y: 1800, z: 3400 }; 
+        const FOLLOW_INITIAL_OFFSET = new THREE.Vector3(130, 90, 160);
+
+        const VELOCITY_STATES = [
+            { name: "State 0: Neutral", val: 0, desc: "엔진 공회전 | 전하 등방성 | 추진 전달 0" },
+            { name: "State 1: First Gear", val: 0.05, desc: "추진 수용 시작 | 가속 초기" },
+            { name: "State 2: Second", val: 0.2, desc: "전기장 비대칭 | 추진력 강화" },
+            { name: "State 3: Third", val: 0.6, desc: "위상 지연 가시화 | 중속" },
+            { name: "State 4: Fourth", val: 1.2, desc: "전면 전하량 감소 시작" },
+            { name: "State 5: Fifth (0.5c)", val: 2.0, desc: "수용 효율 50% 하락" },
+            { name: "State 6: Sixth (0.9c)", val: 3.5, desc: "추진 대상 희박화 임계" },
+            { name: "State 7: Top Gear (c)", val: 5.0, desc: "전면 전하 0 | 추진 효율 0 | 등속 평형" }
+        ];
+        
+        let currentStepIdx = 7; 
+        let velocity = VELOCITY_STATES[currentStepIdx].val;
+        const MAX_RADIUS = 30.0; 
+        const SPIRAL_SEGMENTS = 2500; 
+        const MAX_E_VECTORS = 160;
+
+        function init() {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x010409);
+            
+            camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 1, 60000); 
+            camera.position.set(INITIAL_CAM_POS.x, INITIAL_CAM_POS.y, INITIAL_CAM_POS.z); 
+            
+            followCamera = new THREE.PerspectiveCamera(35, 1, 0.1, 5000);
+            followCamera.position.copy(FOLLOW_INITIAL_OFFSET);
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setScissorTest(true); 
+            document.body.appendChild(renderer.domElement);
+            
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.target.set(300, 0, 0);
+            controls.enableDamping = true;
+
+            const detailOverlay = document.getElementById('detail-interaction-layer');
+            detailControls = new THREE.OrbitControls(followCamera, detailOverlay);
+            detailControls.enableDamping = true;
+
+            createWorld();
+            createModel();
+
+            document.getElementById('btn-prev').onclick = () => changeStep(-1);
+            document.getElementById('btn-next').onclick = () => changeStep(1);
+            document.getElementById('btn-pause').onclick = togglePause;
+            document.getElementById('btn-reset').onclick = reset;
+
+            updateStepUI();
+            window.onresize = onWindowResize;
+            animate();
+        }
+
+        function resetDetailCamera() {
+            const currentTarget = detailControls.target.clone();
+            followCamera.position.copy(currentTarget.add(FOLLOW_INITIAL_OFFSET));
+            detailControls.update();
+        }
+
+        function changeStep(dir) {
+            currentStepIdx = Math.max(0, Math.min(VELOCITY_STATES.length - 1, currentStepIdx + dir));
+            updateStepUI();
+            if (isMoving) velocity = VELOCITY_STATES[currentStepIdx].val;
+        }
+
+        function togglePause() {
+            isMoving = !isMoving;
+            const btn = document.getElementById('btn-pause');
+            if (isMoving) {
+                btn.innerText = "Pause";
+                btn.classList.add('active');
+                velocity = VELOCITY_STATES[currentStepIdx].val;
+            } else {
+                btn.innerText = "Resume";
+                btn.classList.remove('active');
+                velocity = 0;
+            }
+        }
+
+        function updateStepUI() {
+            const state = VELOCITY_STATES[currentStepIdx];
+            document.getElementById('txt-step-name').innerText = state.name;
+            document.getElementById('txt-speed-desc').innerText = state.desc;
+            document.getElementById('btn-prev').disabled = (currentStepIdx === 0);
+            document.getElementById('btn-next').disabled = (currentStepIdx === VELOCITY_STATES.length - 1);
+        }
+
+        function createWorld() {
+            const starGeo = new THREE.BufferGeometry();
+            const starPoints = [];
+            for (let i = 0; i < 8000; i++) {
+                starPoints.push(THREE.MathUtils.randFloatSpread(15000), THREE.MathUtils.randFloatSpread(15000), THREE.MathUtils.randFloatSpread(15000));
+            }
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPoints, 3));
+            scene.add(new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0x24292e, size: 1.2 })));
+
+            const guideLine = new THREE.Line(
+                new THREE.BufferGeometry().setFromPoints([DIR_VEC.clone().multiplyScalar(-4000), DIR_VEC.clone().multiplyScalar(4000)]),
+                new THREE.LineBasicMaterial({ color: 0x0ea5e9, transparent: true, opacity: 0.1 })
+            );
+            scene.add(guideLine);
+
+            scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+            localLight = new THREE.PointLight(0xffffff, 2.0, 800);
+            scene.add(localLight);
+        }
+
+        function createModel() {
+            eGroup = new THREE.Group();
+            scene.add(eGroup);
+            mGroup = new THREE.Group();
+            scene.add(mGroup);
+            
+            const points = [];
+            const phi = Math.PI * (3 - Math.sqrt(5)); 
+            for(let i=0; i < MAX_E_VECTORS; i++) {
+                const y = 1 - (i / (MAX_E_VECTORS - 1)) * 2; 
+                const r = Math.sqrt(1 - y * y); 
+                const theta = phi * i; 
+                points.push(new THREE.Vector3(Math.cos(theta) * r, y, Math.sin(theta) * r).normalize());
+            }
+
+            for (let i = points.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [points[i], points[j]] = [points[j], points[i]];
+            }
+
+            points.forEach(dir => {
+                const arrow = new THREE.ArrowHelper(dir, new THREE.Vector3(0,0,0), MAX_RADIUS, 0x38bdf8, 4, 1.8);
+                arrow.userData.originalDir = dir.clone(); 
+                eGroup.add(arrow);
+            });
+
+            const spiralGeo = new THREE.BufferGeometry();
+            spiralGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array((SPIRAL_SEGMENTS + 1) * 3), 3));
+            spiralGeo.setAttribute('color', new THREE.BufferAttribute(new Float32Array((SPIRAL_SEGMENTS + 1) * 3), 3));
+            
+            spiralLine = new THREE.Line(spiralGeo, new THREE.LineBasicMaterial({ 
+                vertexColors: true, linewidth: 3, transparent: true, blending: THREE.AdditiveBlending 
+            }));
+            mGroup.add(spiralLine);
+
+            particleFrame = new THREE.Mesh(
+                new THREE.SphereGeometry(2.5, 16, 12), 
+                new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.5, wireframe: true })
+            );
+            scene.add(particleFrame);
+        }
+
+        function reset() {
+            currentDist = LOOP_START; 
+            fieldTime = 0;
+            currentStepIdx = 7;
+            velocity = VELOCITY_STATES[currentStepIdx].val;
+            updateStepUI();
+            resetDetailCamera();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            fieldTime += 0.025; 
+
+            if (isMoving) {
+                currentDist += velocity;
+                if(currentDist > LOOP_END) currentDist = LOOP_START;
+            }
+            
+            const posVec = DIR_VEC.clone().multiplyScalar(currentDist);
+            particleFrame.position.copy(posVec);
+            eGroup.position.copy(posVec);
+            mGroup.position.copy(posVec);
+            localLight.position.copy(posVec);
+
+            const iE = Math.pow(Math.sin(fieldTime), 2); 
+            const iM = Math.pow(Math.cos(fieldTime), 2); 
+            const speedRatio = currentStepIdx / (VELOCITY_STATES.length - 1);
+            
+            // --- 전기장: 추진 수용체(가변 전하량) 로직 ---
+            let arrowIdx = 0;
+            const visibleCount = Math.floor(iE * MAX_E_VECTORS);
+            eGroup.children.forEach(c => {
+                if (arrowIdx < visibleCount) {
+                    c.visible = true;
+                    const relativeDir = c.userData.originalDir.dot(DIR_VEC);
+                    
+                    // [논리 반영] 전면 상호작용 공백
+                    // speedRatio=1(광속)일 때 전면(+X) 벡터 길이는 0.
+                    // 이는 추진을 받아낼 대상(전하)이 없음을 의미함.
+                    let geometricLag = 1.0 - (speedRatio * relativeDir);
+                    geometricLag = Math.max(0, geometricLag);
+                    
+                    const finalLen = MAX_RADIUS * geometricLag * (0.65 + 0.35 * iE);
+                    
+                    if(finalLen < 0.2) {
+                        c.visible = false;
+                    } else {
+                        c.setLength(finalLen, finalLen*0.18, finalLen*0.08);
+                    }
+                } else c.visible = false;
+                arrowIdx++;
+            });
+
+            // --- 자기장: 추진 엔진(불변 출력) 로직 ---
+            const pos = spiralLine.geometry.attributes.position.array;
+            const col = spiralLine.geometry.attributes.color.array;
+            const turns = Math.max(0.1, iM * 64);
+            const quaternion = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(1, 0, 0), DIR_VEC);
+
+            for (let i = 0; i <= SPIRAL_SEGMENTS; i++) {
+                const t = i / SPIRAL_SEGMENTS; 
+                const r = Math.pow(t, 2.2) * MAX_RADIUS; 
+                const theta = t * Math.PI * 2 * turns; 
+                
+                // 자기장 나선의 신장은 추진력의 전달 경로가 늘어나는 현상을 도식화함
+                const stretching = (speedRatio * 2.0); 
+                const lagVal = (r + Math.pow(r, 1.2)) * stretching;
+                
+                const v = new THREE.Vector3(-lagVal, r * Math.cos(theta), r * Math.sin(theta)).applyQuaternion(quaternion);
+                pos[i * 3 + 0] = v.x; pos[i * 3 + 1] = v.y; pos[i * 3 + 2] = v.z;
+
+                const hue = 0.96 - (speedRatio * 0.08); 
+                const saturation = 0.9 - (t * 0.2);
+                const lightness = 0.95 - (t * 0.45); 
+                const tempCol = new THREE.Color().setHSL(hue, saturation, lightness);
+                col[i * 3 + 0] = tempCol.r; col[i * 3 + 1] = tempCol.g; col[i * 3 + 2] = tempCol.b;
+            }
+            spiralLine.geometry.attributes.position.needsUpdate = true;
+            spiralLine.geometry.attributes.color.needsUpdate = true;
+            // 자기장 가시성은 항상 엔진이 가동 중임을 보여주기 위해 투명도 유지
+            spiralLine.material.opacity = 0.35 + 0.65 * iM;
+            spiralLine.visible = iM > 0.01;
+            
+            renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
+            renderer.setScissor(0, 0, window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x010409, 1);
+            controls.update();
+            renderer.render(scene, camera);
+
+            const detailSize = 300;
+            const prevTarget = detailControls.target.clone();
+            const targetDiff = posVec.clone().sub(prevTarget);
+            
+            detailControls.target.copy(posVec);
+            followCamera.position.add(targetDiff);
+            detailControls.update();
+            
+            renderer.setViewport(25, window.innerHeight - detailSize - 25, detailSize, detailSize);
+            renderer.setScissor(25, window.innerHeight - detailSize - 25, detailSize, detailSize);
+            renderer.setClearColor(0x010409, 0.1); 
+            renderer.render(scene, followCamera);
+
+            updateUI(iE, iM);
+            updateAxisMarkers();
+        }
+
+        function updateUI(e, m) {
+            document.getElementById('txt-e').innerText = Math.round(e * 100) + "%";
+            document.getElementById('txt-m').innerText = Math.round(m * 100) + "%";
+            document.getElementById('bar-e').style.width = (e * 100) + "%";
+            document.getElementById('bar-m').style.width = (m * 100) + "%";
+            document.getElementById('txt-x-pos').innerText = currentDist.toFixed(2);
+        }
+
+        function updateAxisMarkers() {
+            const axisContainer = document.getElementById('axis-labels');
+            axisContainer.innerHTML = '';
+            for(let d = -2000; d <= 2000; d += 1000) {
+                const p = DIR_VEC.clone().multiplyScalar(d).project(camera);
+                if(p.z < 1) { 
+                    const div = document.createElement('div');
+                    div.className = 'axis-marker';
+                    div.style.left = (p.x * 0.5 + 0.5) * window.innerWidth + 'px';
+                    div.style.top = (-(p.y * 0.5) + 0.5) * window.innerHeight + 'px';
+                    div.innerText = `Pos: ${d}`;
+                    axisContainer.appendChild(div);
+                }
+            }
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
