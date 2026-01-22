@@ -1,4 +1,4 @@
-연구 노트 제목: ---      UFT_Research_Note_Temp2.md
+연구 노트 제목: ---      UFT_Research_Note_T02.md
 
 작성일: 2026-01-22
 작성자: Bae
