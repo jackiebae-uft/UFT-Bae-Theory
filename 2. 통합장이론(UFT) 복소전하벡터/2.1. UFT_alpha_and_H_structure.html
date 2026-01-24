@@ -300,6 +300,8 @@
 
         <div class="math-block">
             $$E_{CF1} = M_{sta1} v^2 \quad \text{ (2-1번식 : 운동역학 구심력의 에너지 표현식)}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Eq 2-1: Kinetic Energy equivalent. E_CF1 = M_sta1 * v^2.</div>
         </div>
 
         <div class="math-block">
@@ -348,6 +350,8 @@
         
         <div class="math-block">
             $$E_{Q3 Tot} = E_{Q1} + E_{Q2} = \frac{k Q_1^2}{D} + \frac{k Q_2^2}{D} = h \nu = \frac{hv}{\pi D}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Total Energy Sum: E_Q3Tot = E_Q1 + E_Q2 = 2 * (k * Q^2 / D) = h * nu.</div>
         </div>
 
         <p>이 식을 정리하면 아래와 같다. ($Q_1 = Q_2$ 설정)</p>
@@ -406,6 +410,8 @@
         <p><strong>1) 데이터 투입 및 수식 전개:</strong> 주파수 정의식($\nu = v / \pi D$) 에 5번식($v = 2\pi k Q_1^2 / h$) 을 대입하여 거리 $D$ 에 대해 정리하면 다음과 같다.</p>
         <div class="math-block">
             $$D = \frac{2k Q_1^2}{h \nu_R}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Rydberg Distance: D = (2 * k * Q_1^2) / (h * nu_R). Calculates the orbital diameter for Rydberg frequency.</div>
         </div>
 
         <p><strong>2) 수치 산출 ($Q_1 = Q_e$ 대입):</strong> 수소 원자의 최외곽 전하량을 기본 전하량 $Q_e$ 로 상정하고 위 식 및 5번식을 계산한다.</p>
@@ -459,10 +465,14 @@
         <p>속도 산출: 5번식에 플랑크 전하 $Q_p = \sqrt{hc / 2\pi k}$ 를 투입하면 $v$ 는 정확히 광속 $c$ 에 도달한다.</p>
         <div class="math-block">
             $$v = \frac{2\pi k}{h} \cdot \left( \frac{hc}{2\pi k} \right) = c \approx 299,792,458 \text{ m/s}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Proton Core Velocity: v = c. At Planck charge conditions (core), mutual orbit velocity reaches speed of light.</div>
         </div>
         <p>거리 산출: 속도가 $c$ 에 도달했을 때의 거리 $D$ 는 다음과 같다.</p>
         <div class="math-block">
             $$D = \frac{c}{\pi \nu_p} \approx \frac{299,792,458}{3.1415 \times 2.2687 \times 10^{23}} \approx 4.2 \times 10^{-16} \text{ m}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Proton Core Diameter: D = c / (pi * nu_p) approx 0.42 fm. Matches proton radius range.</div>
         </div>
 
         <p><strong>3) 분석 결과 및 물리적 매칭: 양성자 코어의 광속 회전</strong></p>
@@ -481,6 +491,8 @@
         <p><strong>2) 수치 산출 ($Q_1 = Q_e$ 대입):</strong></p>
         <div class="math-block">
             $$D = \frac{2 \times 8.9875 \times 10^9 \times (1.6021 \times 10^{-19})^2}{6.6260 \times 10^{-34} \times 1.235589 \times 10^{20}} \approx 5.636 \times 10^{-15} \text{ m}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Electron Diameter Calculation: D = (2 * k * Q_e^2) / (h * nu_e) approx 5.636 fm. Matches 2 * classical electron radius.</div>
         </div>
 
         <p><strong>3) 분석 결과 및 물리적 매칭:</strong> 산출된 거리 $D \approx 5.636 \times 10^{-15} \text{ m}$ 는 현대 물리학에서 전자의 고전적 반지름($r_e \approx 2.8179 \times 10^{-15} \text{ m}$) 의 정확히 2배($2r_e$).</p>
@@ -495,20 +507,28 @@
         <p>먼저, 수소 원자 내의 전하 시스템이 평형을 유지하기 위한 기하학적 기준 상수를 산출한다. UFT 4번식($\nu = v / \pi D$) 과 5번식($v = 2\pi k Q^2 / h$) 을 연립한다.</p>
         <div class="math-block">
             $$\nu = \frac{v}{\pi D} = \frac{1}{\pi D} \cdot \left( \frac{2\pi k Q^2}{h} \right) = \frac{2k Q^2}{hD}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Frequency Derivation: nu = (2 * k * Q^2) / (h * D). Shows inverse relationship between frequency and distance.</div>
         </div>
         <p>이를 통해 주파수와 거리의 곱이 전하량에 의해서만 결정되는 불변 상수임을 알 수 있다.</p>
         <div class="math-block">
             $$\nu D = \frac{2k Q^2}{h}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Invariant Constant: nu * D = (2 * k * Q^2) / h. Frequency times Distance is constant for a given charge.</div>
         </div>
         <p>전자의 기본 전하량 $Q_e$ 를 대입하여 수소 시스템의 고유 상수를 산출한다.</p>
         <div class="math-block">
             $$\nu D = \frac{2 \times (8.9875 \times 10^9) \times (1.6021 \times 10^{-19})^2}{6.6260 \times 10^{-34}} \approx 6.9575 \times 10^5 \text{ m/s}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Hydrogen System Constant: nu * D approx 6.9575 * 10^5 m/s.</div>
         </div>
 
         <p><strong>2) 보어 지름($2a_0$) 에 대응하는 주파수 $\nu$ 산출</strong></p>
         <p>목표 거리 $D = 2a_0 \approx 1.05775 \times 10^{-10} \text{ m}$ 를 위 불변식에 투입한다.</p>
         <div class="math-block">
             $$\nu = \frac{6.9575 \times 10^5}{1.05775 \times 10^{-10}} \approx 6.577 \times 10^{15} \text{ Hz}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Calculated Frequency at 2a0: approx 6.577 * 10^15 Hz. Corresponds to 2 * Rydberg Frequency.</div>
         </div>
         <p>이 산출값은 최외곽 리드베리 진동수($\nu_R \approx 3.2898 \times 10^{15} \text{ Hz}$) 의 약 2배($2 \nu_R$) 에 해당한다.</p>
 
@@ -527,6 +547,21 @@
         <p>관측 데이터: 21cm 수소선($\nu \approx 1.42 \times 10^9 \text{ Hz}$), 램 이동($\nu \approx 1.05 \times 10^9 \text{ Hz}$)</p>
         <p>분석 결과: 이 진동수들은 주파수가 매우 낮아 위 불변 상수를 적용하면 지름 $D$ 가 mm(밀리미터) 대역으로 산출된다. 이는 개별 $E_{cp}$ 의 궤도 운동이 아니다.</p>
         <p>물리적 함의: 수소 원자 18층 빌딩 전체 시스템의 세차 운동(Precession) 이나 집단적 회전 가속도에 의한 거시적 공명 현상이다. $10^{15} \text{ Hz}$ 대역의 최외곽 구조가 거대한 프랙탈 층위에서 일으키는 시스템적 정렬 상태를 의미하는 결정론적 지표이다.</p>
+
+        <h3>3.6. 수소 고전 지름($2a_0$) 에 대응하는 주파수 분석</h3>
+        <p>최외곽 전자($D = 4a_0$) 보다 안쪽 궤도인 보어 지름($2a_0$) 에서 공전하는 전하 시스템의 필연적 진동수를 역산한다.</p>
+        <p><strong>1) 수식 전개 및 진동수 도출:</strong> 거리 산출식($D = 2k Q_1^2 / h \nu$) 에 보어 지름($D = 2a_0 \approx 1.058 \times 10^{-10} \text{ m}$) 을 대입하고 진동수 $\nu$ 에 대해 정리한다.</p>
+        <div class="math-block">
+            $$\nu_{classical} = \frac{2k Q_e^2}{h (2a_0)}$$
+            <!-- AI Context Hint -->
+            <div class="ai-only">[AI Hint] Classical Frequency: nu = (2 * k * Q_e^2) / (h * 2a_0). Frequency at Bohr Diameter (2a0).</div>
+        </div>
+        <p><strong>2) 수치 분석:</strong> 3.3절에서 산출된 리드베리 진동수($\nu_R$) 에 대응하는 거리가 $4a_0$ 이었으므로, 거리가 $1/2$ 로 줄어든 $2a_0$ 에 대응하는 진동수는 정확히 리드베리 진동수의 2배가 되어야 한다.</p>
+        <p>산출 수치: $\nu_{classical} = 2 \nu_R \approx 6.57968 \times 10^{15} \text{ Hz}$</p>
+        <p><strong>3) 분석 결과 및 물리적 의미: 계의 운영 규격으로서의 $\alpha$</strong></p>
+        <div class="note-section">
+            이 진동수($2\nu_R$) 는 현대 물리학에서 수소 원자 바닥 상태의 전자가 핵 주위를 도는 고전적 공전 주파수와 수치적으로 일치한다. 그러나 UFT의 동역학적 관점에서 볼 때, 저자님의 통찰처럼 거리가 $2a_0$ 로 줄어들면 공전 속도 $v$ 는 $\sqrt{2} \alpha c$ 로 증가하며 $\alpha$ 의 고정된 틀을 벗어난 고유의 평형을 형성하게 된다. 이는 미세구조상수($\alpha$) 가 수소 내부의 모든 전하 시스템을 지배하는 '유전적 속성'이 아니라, 외부 세계와 조우하는 특정 경계층에서 발현되는 <strong>'계의 운영 규격'</strong>임을 명확히 증명하는 결과이다.
+        </div>
 
         <h3>3.7. UFT 수소 원자 모델링: 1838개 Ecp의 프랙탈 공간 분포</h3>
         <p>UFT 이론에서 수소원자의 모델링은 아래와 같다. 여러 관측 data 들과 UFT 공식 및 연산 규칙 등에 따라 본 수소(H)원자 모델은 UFT의 결정론적 원리와 관측 데이터 간의 정합성을 입증하는 최적의 동역학적 구조를 제시한다. 아래 정리된 테이블에서 볼 수 있듯이 UFT의 결정론적 개념, 공식, 계산 수치 등의 결과에 근거하여 모델링한 것으로써 실제 수소(H) 원자의 구조와 상당히 유사할 것으로 예측한다. 추가적인 정밀한 관측 data 등에 의해서 약간의 수정이 필요할 수는 있을 것이다.</p>
