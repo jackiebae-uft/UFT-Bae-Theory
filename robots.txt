@@ -1,6 +1,6 @@
+# AI sitemap is hosted directly on author's domain
 User-agent: *
 Allow: /
 
-AI 전용 지도 위치를 구글 리다이렉트 없이 저자님의 도메인 직접 주소로 지정함
+Sitemap: https://uft-bae-theory.com/sitemap.xml
 
-Sitemap: https://www.google.com/url?sa=E&source=gmail&q=https://uft-bae-theory.com/sitemap.xml
