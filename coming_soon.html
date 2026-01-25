@@ -1,9 +1,55 @@
-<!-- [index.html 내부] -->
-
-<!-- 1. 준비된 페이지 (원래 주소 유지) -->
-<li><a href="2. 통합장이론.../2.1. UFT_alpha...html" ...>2.1. 미세구조상수...</a></li>
-
-<!-- 2. 아직 준비 안 된 페이지들 (전부 같은 주소로 연결!) -->
-<li><a href="coming_soon.html" ...>4.0. 에너지 양자화</a></li>
-<li><a href="coming_soon.html" ...>4.1. 광속도 c의 기원</a></li>
-<li><a href="coming_soon.html" ...>5.0. 지구 중력의 통합</a></li>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>준비 중</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0d1117; /* 메인 테마 배경색 */
+            color: #c9d1d9; /* 메인 테마 텍스트 색 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Noto Sans KR', sans-serif;
+            text-align: center;
+        }
+        .message {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #58a6ff; /* 포인트 컬러 */
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        .sub-message {
+            font-size: 1.2rem;
+            color: #8b949e;
+            line-height: 1.6;
+        }
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: #8b949e;
+        }
+        
+        /* 깜빡이는 애니메이션 효과 */
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="icon">🚧</div>
+    <div class="message">Coming soon !!!</div>
+    <div class="sub-message">
+        해당 페이지는 현재 작성 중입니다.<br>
+        조금만 기다려 주세요.
+    </div>
+</body>
+</html>
