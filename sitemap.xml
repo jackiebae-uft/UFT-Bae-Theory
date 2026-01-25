@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 메인 페이지 -->
   <url><loc>https://uft-bae-theory.com/index.html</loc><priority>1.0</priority></url>
   
   <!-- 0. 통합장이론(UFT) 소개 -->
@@ -14,6 +15,10 @@
   
   <!-- 2. 통합장이론(UFT) 복소전하벡터 -->
   <url><loc>https://uft-bae-theory.com/2. 통합장이론(UFT) 복소전하벡터/2.0. UFT 복소전하벡터 V.30.html</loc><priority>0.9</priority></url>
+  
+  <!-- [수정됨] 2.1절 관련 파일들 (HTML 태그 제거 및 XML 형식 변환 완료) -->
+  <url><loc>https://uft-bae-theory.com/2. 통합장이론(UFT) 복소전하벡터/2.1. UFT_alpha_and_H_structure.html</loc><priority>0.9</priority>  </url>
+  <url><loc>https://uft-bae-theory.com/2. 통합장이론(UFT) 복소전하벡터/2.1._Gemini Analysis &amp; Spin Calculation.html</loc><priority>0.8</priority> </url>
   <url><loc>https://uft-bae-theory.com/2. 통합장이론(UFT) 복소전하벡터/2.3 UFT_자기력상수 유도.html</loc><priority>0.8</priority></url>
   
   <!-- 3. 통합장이론(UFT) 입자물리이론 -->
