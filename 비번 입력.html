@@ -1,0 +1,44 @@
+// 비밀번호 설정 (원하는 것으로 변경하세요)
+const SECRET_CODE = "uft_비번_0916"; 
+
+function checkPw() {
+    const input = document.getElementById('password').value;
+    const layer = document.getElementById('login-layer');
+    const content = document.getElementById('secure-content');
+    const msg = document.getElementById('error-msg');
+
+    if (input === SECRET_CODE) {
+        layer.style.opacity = '0'; // 부드럽게 사라짐 효과
+        setTimeout(() => {
+            layer.style.display = 'none';
+            content.style.display = 'block';
+        }, 300);
+    } else {
+        msg.style.display = 'block';
+        msg.innerText = "비밀번호가 일치하지 않습니다.";
+        
+        // 입력창 흔들기 효과
+        const box = document.getElementById('login-box');
+        box.style.animation = "shake 0.3s";
+        setTimeout(() => box.style.animation = "", 300);
+    }
+}
+
+// 엔터키 입력 지원
+document.getElementById('password').addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        checkPw();
+    }
+});
+
+// 흔들기 애니메이션 추가
+const style = document.createElement('style');
+style.innerHTML = `
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}`;
+document.head.appendChild(style);
