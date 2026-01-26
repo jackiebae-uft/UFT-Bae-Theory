@@ -1,6 +1,6 @@
 (function() {
     // ▼▼▼ 비밀번호 설정 (여기만 바꾸세요) ▼▼▼
-    const SECRET_CODE = "uft2026"; 
+    const SECRET_CODE = "uft비번0916"; 
     // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
     // 1. 스타일(CSS) 자동 주입
