@@ -49,8 +49,10 @@
             background: none;
             padding: 0;
             line-height: 1;
+            z-index: 10; /* 입력창보다 위에 오도록 설정 */
+            color: #8b949e; /* 색상 명시 */
         }
-        #toggle-btn:hover { filter: brightness(1.2); }
+        #toggle-btn:hover { filter: brightness(1.2); color: #c9d1d9; }
 
         #lock-btn {
             padding: 10px 25px; background: #238636; color: white;
