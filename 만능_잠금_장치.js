@@ -18,12 +18,40 @@
             background: #161b22; border: 1px solid #30363d;
             padding: 40px; border-radius: 12px; text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            min-width: 300px; /* 박스 최소 너비 */
         }
+        
+        /* 비밀번호 입력 래퍼 (아이콘 배치를 위해) */
+        .password-wrapper {
+            position: relative;
+            width: 220px;
+            margin: 20px auto;
+        }
+
         #lock-input {
-            padding: 12px; border-radius: 6px; border: 1px solid #30363d;
-            background: #0d1117; color: #fff; margin: 20px 0; width: 200px;
+            width: 100%;
+            padding: 12px 40px 12px 12px; /* 오른쪽 여백(아이콘 자리) 확보 */
+            border-radius: 6px; border: 1px solid #30363d;
+            background: #0d1117; color: #fff;
             text-align: center; font-size: 1rem;
+            box-sizing: border-box; /* 패딩 포함 너비 계산 */
         }
+        
+        /* 눈 아이콘 버튼 */
+        #toggle-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.2rem;
+            border: none;
+            background: none;
+            padding: 0;
+            line-height: 1;
+        }
+        #toggle-btn:hover { filter: brightness(1.2); }
+
         #lock-btn {
             padding: 10px 25px; background: #238636; color: white;
             border: none; border-radius: 6px; cursor: pointer; font-size: 1rem;
@@ -41,8 +69,12 @@
         <div id="lock-box">
             <h2 style="margin:0 0 10px 0; color:#58a6ff;">🔒 페이지 잠금</h2>
             <p style="color:#8b949e; font-size:0.9rem;">작성자 전용 공간입니다.</p>
-            <input type="password" id="lock-input" placeholder="비밀번호 입력">
-            <br>
+            
+            <div class="password-wrapper">
+                <input type="password" id="lock-input" placeholder="비밀번호 입력">
+                <span id="toggle-btn" title="비밀번호 보기">👁️</span>
+            </div>
+
             <button id="lock-btn">확인</button>
             <p id="lock-msg">비밀번호가 일치하지 않습니다.</p>
         </div>
@@ -56,6 +88,15 @@
         const input = document.getElementById('lock-input');
         const btn = document.getElementById('lock-btn');
         const msg = document.getElementById('lock-msg');
+        const toggleBtn = document.getElementById('toggle-btn');
+
+        // [기능 추가] 비밀번호 보기/숨기기 토글
+        toggleBtn.addEventListener('click', function() {
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            // 아이콘 변경: 비밀번호가 보일 땐 '🔓', 감춰질 땐 '👁️'
+            this.innerText = type === 'password' ? '👁️' : '🔓';
+        });
 
         // 확인 기능
         function unlock() {
@@ -70,6 +111,14 @@
                 msg.style.display = 'block';
                 input.value = '';
                 input.focus();
+                // 틀렸을 때 흔들기 효과
+                const box = document.getElementById('lock-box');
+                box.animate([
+                    { transform: 'translateX(0)' },
+                    { transform: 'translateX(-5px)' },
+                    { transform: 'translateX(5px)' },
+                    { transform: 'translateX(0)' }
+                ], { duration: 300 });
             }
         }
 
