@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[UFT 부록] 현대 물리학이 R=D/2라는 기하학적 함정에 빠지게 된 역사적 과정 분석">
+    <title>[UFT 부록] R=D/2 오류의 역사적 기원 - UFT Bae Theory</title>
+    <!-- 스타일/스크립트 동일 적용 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] } };</script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root { --bg-color: #0d1117; --text-color: #c9d1d9; --accent-color: #58a6ff; --border-color: #30363d; --card-bg: #161b22; --history-sepia: #d2a56d; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans KR', sans-serif; line-height: 1.8; margin: 0; padding: 40px; display: flex; justify-content: center; }
+        .wrapper { max-width: 900px; width: 100%; }
+        h1 { color: #fff; border-bottom: 2px solid var(--history-sepia); padding-bottom: 15px; margin-bottom: 30px; }
+        .link-box { background: rgba(88, 166, 255, 0.1); padding: 15px; border-radius: 8px; margin-bottom: 40px; border: 1px solid var(--accent-color); display: flex; justify-content: space-around; flex-wrap: wrap;}
+        .link-box a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
+        .link-box span { color: #fff; font-weight: bold; border-bottom: 2px solid #fff; }
+        .timeline-box { background: rgba(210, 165, 109, 0.05); border-left: 3px solid var(--history-sepia); padding: 20px; margin: 20px 0; }
+        .timeline-title { color: var(--history-sepia); font-weight: bold; display: block; margin-bottom: 10px; }
+        .ai-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+        footer { margin-top: 80px; text-align: center; font-size: 0.9rem; color: #8b949e; border-top: 1px solid var(--border-color); padding-top: 20px; }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="link-box">
+        <a href="Note_03_1_Math_Proof.html">1. [증명] R=D의 수학적 필연성</a>
+        <a href="Note_03_2_Physics_Impact.html">2. [분석] 현대물리학의 오류와 대안</a>
+        <span>▶ 3. [부록] R=D/2 오류의 역사적 기원</span>
+    </div>
+
+    <header>
+        <h1>[UFT 부록] 현대 물리학이 R=D/2라는 기하학적 함정에 빠진 역사적 과정</h1>
+        <p>본 문서는 환산질량(Reduced Mass)의 탄생 배경과 구심력 공식에서 반지름이 $R=D/2$로 오인되어 고착화된 과정을 추적합니다.</p>
+    </header>
+
+    <section>
+        <h2>1. 기하학적 공식의 탄생: 하위헌스 (1659년)</h2>
+        <div class="timeline-box">
+            <span class="timeline-title">곡률 반경으로서의 r</span>
+            크리스티안 하위헌스는 구심력 공식을 유도할 때, 입자가 원 궤도를 돌면서 직선 경로에서 얼마나 벗어나는지를 기하학적으로 계산했습니다. 이때 $r$은 순수한 <strong>'기하학적 원의 반지름'</strong>이었습니다. 힘의 상호작용 거리라는 역학적 개념은 없었습니다.
+        </div>
+    </section>
+
+    <section>
+        <h2>2. 뉴턴의 수용과 근사의 함정</h2>
+        <div class="timeline-box">
+            <span class="timeline-title">태양계 모델의 특수성</span>
+            뉴턴이 이 공식을 중력에 적용할 당시에는 태양(거대 질량)과 행성(소형 질량) 사이의 관계가 주였습니다. 이 경우 회전 중심과 태양의 위치가 거의 일치하므로 $r \approx D$가 성립했습니다. 이 <strong>'우연한 일치'</strong> 때문에 공식의 구조적 결함이 드러나지 않았습니다.
+        </div>
+    </section>
+
+    <section>
+        <h2>3. 오류의 고착화: 동일 질량 상호공전</h2>
+        <p>현대 물리학이 원자나 이중성 같은 <strong>동일 질량(또는 유사 질량) 시스템</strong>을 다루면서 문제가 터졌습니다.</p>
+        <ul>
+            <li><strong>관측된 현상:</strong> 두 입자가 서로의 중간 지점($D/2$)을 축으로 돕니다.</li>
+            <li><strong>잘못된 적용:</strong> 물리학자들은 하위헌스의 기하학적 정의($r$=반지름)에만 집착하여, 힘의 공식 분모에 기계적으로 $D/2$를 넣었습니다.</li>
+            <li><strong>결과:</strong> 힘과 에너지가 실제보다 2배 크게 계산되는 오류가 발생했습니다.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. 환산질량($\mu$)의 수학적 차용</h2>
+        <p>이 2배의 오차를 해결하기 위해 현대 물리학은 <strong>환산질량($\mu \approx M/2$)</strong>이라는 수학적 도구를 구심력 공식에 차용했습니다.</p>
+        <p>이는 좌표 변환을 위해 만들어진 도구를 <strong>물리적 실체(개별 입자의 힘)를 설명하는 데 오용한 사례</strong>입니다. 결국 $R=D/2$ 오류를 덮기 위해 질량을 절반으로 깎는($M/2$) 땜질을 한 셈이며, 이는 UFT의 $R=D$ 주장이 옳음을 역설적으로 증명합니다.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Bae. All Rights Reserved. | UFT Theory Research Analysis</p>
+    </footer>
+    
+    <!-- 댓글 기능 -->
+    <script src="https://giscus.app/client.js"
+        data-repo="jackiebae-uft/jackiebae-uft.github.io"
+        data-repo-id="R_kgDONsxC3Q"
+        data-category="General"
+        data-category-id="DIC_kwDONsxC3c4CkM3_"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="ko"
+        crossorigin="anonymous"
+        async>
+    </script>
+</div>
+</body>
+</html>
